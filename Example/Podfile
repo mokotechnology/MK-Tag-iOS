@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'MKBeaconXTag_Example' do
+  pod 'MKBeaconXTag', :path => '../'
+
+  target 'MKBeaconXTag_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
