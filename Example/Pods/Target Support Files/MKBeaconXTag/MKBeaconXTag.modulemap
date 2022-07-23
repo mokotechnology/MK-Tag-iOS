@@ -1,0 +1,6 @@
+framework module MKBeaconXTag {
+  umbrella header "MKBeaconXTag-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,11 +8,25 @@
 
 #import "MKAppDelegate.h"
 
+#import "MKBXTScanController.h"
+
+@interface MKAppDelegate ()
+
+@property (nonatomic, strong)UIView *launchView;
+
+@end
+
 @implementation MKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _window.backgroundColor = [UIColor whiteColor];
+    MKBXTScanController *vc = [[MKBXTScanController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    _window.rootViewController = nav;
+    [_window makeKeyAndVisible];
+    [self addLaunchScreen];
     return YES;
 }
 
@@ -41,6 +55,28 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)addLaunchScreen {
+    UIViewController *viewController = [[UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil] instantiateViewControllerWithIdentifier:@"LaunchImageBoard"];
+    self.launchView = viewController.view;
+    [self.window addSubview:self.launchView];
+    [self.window bringSubviewToFront:self.launchView];
+    
+    [self performSelector:@selector(launchViewRemoved) withObject:nil afterDelay:1.f];
+}
+
+- (void)launchViewRemoved {
+    if (!self.launchView || !self.launchView.superview) {
+        return;
+    }
+    [UIView animateWithDuration:.5f animations:^{
+        self.launchView.alpha = 0.0;
+        self.launchView.transform = CGAffineTransformMakeScale(1.2, 1.2);
+     }completion:^(BOOL finished) {
+        [self.launchView removeFromSuperview];
+         self.launchView = nil;
+    }];
 }
 
 @end

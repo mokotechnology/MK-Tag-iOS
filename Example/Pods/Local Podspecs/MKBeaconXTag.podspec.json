@@ -1,0 +1,53 @@
+{
+  "name": "MKBeaconXTag",
+  "version": "0.1.0",
+  "summary": "A short description of MKBeaconXTag.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/aadyx2007@163.com/MKBeaconXTag",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "aadyx2007@163.com": "aadyx2007@163.com"
+  },
+  "source": {
+    "git": "https://github.com/aadyx2007@163.com/MKBeaconXTag.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "12.0"
+  },
+  "source_files": "MKBeaconXTag/Classes/**/*",
+  "resource_bundles": {
+    "MKBeaconXTag": [
+      "MKBeaconXTag/Assets/*.png"
+    ]
+  },
+  "dependencies": {
+    "MKBaseModuleLibrary": [
+
+    ],
+    "MKCustomUIModule": [
+
+    ],
+    "MKBaseBleModule": [
+
+    ],
+    "MKBeaconXCustomUI": [
+
+    ],
+    "HHTransition": [
+
+    ],
+    "MLInputDodger": [
+
+    ],
+    "CTMediator": [
+
+    ],
+    "iOSDFULibrary": [
+
+    ]
+  }
+}

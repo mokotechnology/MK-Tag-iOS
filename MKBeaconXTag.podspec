@@ -28,15 +28,22 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/aadyx2007@163.com/MKBeaconXTag.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '12.0'
 
   s.source_files = 'MKBeaconXTag/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'MKBeaconXTag' => ['MKBeaconXTag/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'MKBeaconXTag' => ['MKBeaconXTag/Assets/*.png']
+  }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'MKBaseModuleLibrary'
+  s.dependency 'MKCustomUIModule'
+  s.dependency 'MKBaseBleModule'
+  s.dependency 'MKBeaconXCustomUI'
+  
+  s.dependency 'HHTransition'
+  s.dependency 'MLInputDodger'
+  s.dependency 'CTMediator'
+  s.dependency 'iOSDFULibrary'
+  
 end
