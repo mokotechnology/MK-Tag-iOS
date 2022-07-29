@@ -17,6 +17,9 @@ typedef NS_ENUM(NSInteger, mk_bxt_taskOperationID) {
 #pragma mark - 自定义读取
     mk_bxt_taskReadMacAddressOperation,         //读取mac地址
     mk_bxt_taskReadThreeAxisDataParamsOperation,    //读取三轴传感器参数
+    mk_bxt_taskReadSlotParamsOperation,         //读取通道广播参数
+    mk_bxt_taskReadSlotDataOperation,           //读取通道广播内容
+    mk_bxt_taskReadSlotTriggerParamsOperation,  //读取通道触发参数
     mk_bxt_taskReadConnectableOperation,        //读取可连接性
     mk_bxt_taskReadPowerOffByHallSensorOperation,   //读取霍尔开关机状态
     mk_bxt_taskReadSlotDataTypeOperation,           //读取全部通道类型
@@ -34,6 +37,9 @@ typedef NS_ENUM(NSInteger, mk_bxt_taskOperationID) {
     
 #pragma mark - 自定义协议配置
     mk_bxt_taskConfigThreeAxisDataParamsOperation,  //配置三轴传感器参数
+    mk_bxt_taskConfigSlotParamOperation,            //配置通道广播参数
+    mk_bxt_taskConfigSlotDataOperation,             //配置通道广播内容
+    mk_bxt_taskConfigSlotTriggerParamsOperation,    //配置通道广播触发方式
     mk_bxt_taskConfigConnectableOperation,      //配置可连接状态
     mk_bxt_taskPowerOffOperation,               //关机
     mk_bxt_taskFactoryResetOperation,           //恢复出厂设置

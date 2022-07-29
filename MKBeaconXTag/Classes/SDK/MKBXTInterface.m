@@ -89,6 +89,54 @@
                  failedBlock:failedBlock];
 }
 
++ (void)bxt_readSlotParamsWithIndex:(NSInteger)index
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock {
+    if (index < 0 || index > 5) {
+        [MKBLEBaseSDKAdopter operationParamsErrorBlock:failedBlock];
+        return;
+    }
+    NSString *indexString = [MKBLEBaseSDKAdopter fetchHexValue:index byteLen:1];
+    NSString *commandString = [NSString stringWithFormat:@"%@%@",@"ea002201",indexString];
+    [centralManager addTaskWithTaskID:mk_bxt_taskReadSlotParamsOperation
+                       characteristic:peripheral.bxt_custom
+                          commandData:commandString
+                         successBlock:sucBlock
+                         failureBlock:failedBlock];
+}
+
++ (void)bxt_readSlotDataWithIndex:(NSInteger)index
+                         sucBlock:(void (^)(id returnData))sucBlock
+                      failedBlock:(void (^)(NSError *error))failedBlock {
+    if (index < 0 || index > 5) {
+        [MKBLEBaseSDKAdopter operationParamsErrorBlock:failedBlock];
+        return;
+    }
+    NSString *indexString = [MKBLEBaseSDKAdopter fetchHexValue:index byteLen:1];
+    NSString *commandString = [NSString stringWithFormat:@"%@%@",@"ea002301",indexString];
+    [centralManager addTaskWithTaskID:mk_bxt_taskReadSlotDataOperation
+                       characteristic:peripheral.bxt_custom
+                          commandData:commandString
+                         successBlock:sucBlock
+                         failureBlock:failedBlock];
+}
+
++ (void)bxt_readSlotTriggerParamsWithIndex:(NSInteger)index
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock {
+    if (index < 0 || index > 5) {
+        [MKBLEBaseSDKAdopter operationParamsErrorBlock:failedBlock];
+        return;
+    }
+    NSString *indexString = [MKBLEBaseSDKAdopter fetchHexValue:index byteLen:1];
+    NSString *commandString = [NSString stringWithFormat:@"%@%@",@"ea002401",indexString];
+    [centralManager addTaskWithTaskID:mk_bxt_taskReadSlotTriggerParamsOperation
+                       characteristic:peripheral.bxt_custom
+                          commandData:commandString
+                         successBlock:sucBlock
+                         failureBlock:failedBlock];
+}
+
 + (void)bxt_readConnectableWithSucBlock:(void (^)(id returnData))sucBlock
                             failedBlock:(void (^)(NSError *error))failedBlock {
     [self readDataWithTaskID:mk_bxt_taskReadConnectableOperation

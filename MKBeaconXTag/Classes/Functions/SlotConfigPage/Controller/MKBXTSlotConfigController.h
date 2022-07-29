@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKBXTSlotConfigController : MKBaseViewController
 
+@property (nonatomic, assign)NSInteger slotIndex;
+
 @end
 
 NS_ASSUME_NONNULL_END

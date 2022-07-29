@@ -31,6 +31,25 @@ typedef NS_ENUM(NSInteger, mk_bxt_threeAxisDataAG) {
     mk_bxt_threeAxisDataAG3                //±16g
 };
 
+typedef NS_ENUM(NSInteger, mk_bxt_txPower) {
+    mk_bxt_txPowerNeg40dBm,   //RadioTxPower:-40dBm
+    mk_bxt_txPowerNeg20dBm,   //-20dBm
+    mk_bxt_txPowerNeg16dBm,   //-16dBm
+    mk_bxt_txPowerNeg12dBm,   //-12dBm
+    mk_bxt_txPowerNeg8dBm,    //-8dBm
+    mk_bxt_txPowerNeg4dBm,    //-4dBm
+    mk_bxt_txPower0dBm,       //0dBm
+    mk_bxt_txPower3dBm,       //3dBm
+    mk_bxt_txPower4dBm,       //4dBm
+};
+
+typedef NS_ENUM(NSInteger, mk_bxt_urlHeaderType) {
+    mk_bxt_urlHeaderType1,             //http://www.
+    mk_bxt_urlHeaderType2,             //https://www.
+    mk_bxt_urlHeaderType3,             //http://
+    mk_bxt_urlHeaderType4,             //https://
+};
+
 #pragma mark ****************************************Delegate************************************************
 
 @class MKBXTBaseBeacon;

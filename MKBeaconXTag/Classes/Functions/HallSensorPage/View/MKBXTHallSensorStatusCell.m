@@ -90,7 +90,6 @@
 }
 
 #pragma mark - getter
-#pragma mark - getter
 - (UIView *)backView {
     if (!_backView) {
         _backView = [[UIView alloc] init];

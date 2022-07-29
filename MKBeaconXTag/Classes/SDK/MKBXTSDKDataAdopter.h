@@ -20,6 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)fetchThreeAxisDataRate:(mk_bxt_threeAxisDataRate)dataRate;
 + (NSString *)fetchThreeAxisDataAG:(mk_bxt_threeAxisDataAG)ag;
 
++ (NSString *)fetchTxPower:(mk_bxt_txPower)txPower;
++ (NSString *)fetchTxPowerValueString:(NSString *)content;
+
++ (NSDictionary *)parseSlotData:(NSString *)content advData:(NSData *)advData;
+
++ (NSDictionary *)parseSlotTriggerParam:(NSString *)content;
+
++ (NSString *)fetchUrlString:(mk_bxt_urlHeaderType)urlType urlContent:(NSString *)urlContent;
+
 @end
 
 NS_ASSUME_NONNULL_END

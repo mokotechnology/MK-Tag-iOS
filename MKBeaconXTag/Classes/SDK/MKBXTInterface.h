@@ -80,6 +80,109 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)bxt_readThreeAxisDataParamsWithSucBlock:(void (^)(id returnData))sucBlock
                                     failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Read the broadcast parameters of the specified channel.
+/*
+ @{
+     @"slotIndex":@"1",         //Number of the channel.
+     @"advInterval":@"10",      //Adv Interval.(Unit:100ms)
+     @"advDuration":@"10",      //Adv Duration.(Unit:s)
+     @"standbyDuration":@"0",   //Standby Duration.(Unit:s)
+     @"rssi":@"-10",            //Rssi,dBm
+     @"txPower":@"0dBm",           //Tx Power
+ };
+ */
+/// @param index 0~5.Number of the channel.
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_readSlotParamsWithIndex:(NSInteger)index
+                           sucBlock:(void (^)(id returnData))sucBlock
+                        failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read channel broadcast content.
+/*
+ //
+ No Data:
+ @{
+     @"slotIndex":@"0",
+     @"slotType":@"ff",
+ };
+ 
+ UID:
+ @{
+     @"slotIndex":@"1",
+     @"slotType":@"00",
+     @"namespaceID":@"00112233445566778899",
+     @"instanceID":@"112233445566"
+ };
+ 
+ URL:
+ @{
+     @"slotIndex":@"2",
+     @"slotType":@"10",
+     @"urlType":@"1",       //@"0":http://www.   @"1":https://www.  @"2":http://   @"3":https://
+     @"urlContent":@"moko.com"
+ };
+ 
+ TLM:
+ @{
+     @"slotIndex":@"3",
+     @"slotType":@"20",
+ };
+ 
+ iBeacon:
+ @{
+     @"slotIndex":@"4",
+     @"slotType":@"50",
+     @"major":@"123",
+     @"minor":@"456",
+     @"uuid":@"111111111111111111111111111111111"
+ };
+ 
+ Tag Info:
+ @{
+     @"slotIndex":@"5",
+     @"slotType":@"80",
+     @"deviceName":@"MK Tag",
+     @"tagID":@"0001"
+ };
+ */
+/// @param index 0~5.Number of the channel.
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_readSlotDataWithIndex:(NSInteger)index
+                         sucBlock:(void (^)(id returnData))sucBlock
+                      failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read channel trigger parameters.
+/*
+ Close:
+ @{
+     @"slotIndex":@"0",
+     @"triggerType":@"00",
+ };
+ Motion detection:
+ @{
+     @"slotIndex":@"1",
+     @"triggerType":@"05",
+     @"start":@(YES),   //YES:Start broadcasting  NO:Stop broadcasting
+     @"advInterval":@"10",  //The length of time to broadcast after the trigger condition. (When set to stop broadcasting, this parameter is invalid)
+     @"staticInterval":@"20",   //Determine the length of time the device has been in a stationary state.
+ };
+ Magnetic detection:
+ @{
+     @"slotIndex":@"2",
+     @"triggerType":@"06",
+     @"start":@(YES),   //YES:Start broadcasting  NO:Stop broadcasting
+     @"advInterval":@"10",  //The length of time to broadcast after the trigger condition. (When set to stop broadcasting, this parameter is invalid)
+ };
+ */
+/// @param index 0~5.Number of the channel.
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_readSlotTriggerParamsWithIndex:(NSInteger)index
+                                  sucBlock:(void (^)(id returnData))sucBlock
+                               failedBlock:(void (^)(NSError *error))failedBlock;
+
 /// Read the connectable status of the device.
 /*
  @{

@@ -19,6 +19,8 @@
 
 #import "MKBXTSlotModel.h"
 
+#import "MKBXTSlotConfigController.h"
+
 @interface MKBXTSlotController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
@@ -50,6 +52,12 @@
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44.f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MKBXTSlotConfigController *vc = [[MKBXTSlotConfigController alloc] init];
+    vc.slotIndex = indexPath.row;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UITableViewDataSource

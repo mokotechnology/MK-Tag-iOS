@@ -170,6 +170,31 @@
                       @"gravityReference":[content substringWithRange:NSMakeRange(2, 2)],
                       @"motionThreshold":[MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(4, 2)],
                       };
+    }else if ([cmd isEqualToString:@"22"]){
+        //读取通道广播参数
+        operationID = mk_bxt_taskReadSlotParamsOperation;
+        NSString *slotIndex = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, 2)];
+        NSString *advInterval = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(2, 2)];
+        NSString *advDuration = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(4, 4)];
+        NSString *standbyDuration = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(8, 4)];
+        NSNumber *rssi = [MKBLEBaseSDKAdopter signedHexTurnString:[content substringWithRange:NSMakeRange(12, 2)]];
+        NSString *txPower = [MKBXTSDKDataAdopter fetchTxPowerValueString:[content substringWithRange:NSMakeRange(14, 2)]];
+        resultDic = @{
+            @"slotIndex":slotIndex,
+            @"advInterval":advInterval,
+            @"advDuration":advDuration,
+            @"standbyDuration":standbyDuration,
+            @"rssi":[NSString stringWithFormat:@"%@",rssi],
+            @"txPower":txPower,
+        };
+    }else if ([cmd isEqualToString:@"23"]) {
+        //读取通道广播内容
+        operationID = mk_bxt_taskReadSlotDataOperation;
+        resultDic = [MKBXTSDKDataAdopter parseSlotData:content advData:data];
+    }else if ([cmd isEqualToString:@"24"]) {
+        //读取通道触发条件
+        operationID = mk_bxt_taskReadSlotTriggerParamsOperation;
+        resultDic = [MKBXTSDKDataAdopter parseSlotTriggerParam:content];
     }else if ([cmd isEqualToString:@"25"]) {
         //读取可连接状态
         operationID = mk_bxt_taskReadConnectableOperation;
@@ -248,6 +273,15 @@
     }else if ([cmd isEqualToString:@"21"]) {
         //配置三轴传感器参数
         operationID = mk_bxt_taskConfigThreeAxisDataParamsOperation;
+    }else if ([cmd isEqualToString:@"22"]) {
+        //配置通道广播参数
+        operationID = mk_bxt_taskConfigSlotParamOperation;
+    }else if ([cmd isEqualToString:@"23"]) {
+        //配置通道广播内容
+        operationID = mk_bxt_taskConfigSlotDataOperation;
+    }else if ([cmd isEqualToString:@"24"]) {
+        //配置通道广播触发方式
+        operationID = mk_bxt_taskConfigSlotTriggerParamsOperation;
     }else if ([cmd isEqualToString:@"25"]) {
         //配置可连接状态
         operationID = mk_bxt_taskConfigConnectableOperation;
