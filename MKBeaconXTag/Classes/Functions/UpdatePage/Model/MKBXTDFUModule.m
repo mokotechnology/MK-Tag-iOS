@@ -20,8 +20,6 @@ static char const kBXTInitiateDFUData = 0x00;
 static char const kBXTTerminateFimwareUpdateData = 0x03;
 static NSInteger const kBXTOTAMaxMtuLen = 100;
 
-static NSString *const dfuUpdateDomain = @"com.moko.dfuUpdateDomain";
-
 typedef NS_ENUM(NSInteger, bxt_ota_process) {
     bxt_ota_process_start,
     bxt_ota_process_reconnect,
@@ -39,9 +37,6 @@ typedef NS_ENUM(NSInteger, bxt_ota_process) {
 @property (nonatomic, assign) NSInteger length;
 @property (nonatomic, strong) NSData *fileData;
 @property (nonatomic, assign) bxt_ota_process otaProcess;
-
-@property (nonatomic, strong)dispatch_queue_t otaQueue;
-@property (nonatomic, strong)dispatch_semaphore_t semaphore;
 
 @end
 
@@ -219,21 +214,6 @@ typedef NS_ENUM(NSInteger, bxt_ota_process) {
                                                 userInfo:@{@"errorInfo":msg}];
         block(error);
     });
-}
-
-#pragma mark - getter
-- (dispatch_semaphore_t)semaphore {
-    if (!_semaphore) {
-        _semaphore = dispatch_semaphore_create(0);
-    }
-    return _semaphore;
-}
-
-- (dispatch_queue_t)otaQueue {
-    if (!_otaQueue) {
-        _otaQueue = dispatch_queue_create("otaQueue", DISPATCH_QUEUE_SERIAL);
-    }
-    return _otaQueue;
 }
 
 @end
