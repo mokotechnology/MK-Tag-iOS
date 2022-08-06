@@ -63,7 +63,8 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44.f;
+    MKNormalTextCellModel *cellModel = self.dataList[indexPath.row];
+    return [cellModel cellHeightWithContentWidth:kViewWidth];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
