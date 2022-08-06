@@ -182,9 +182,6 @@ static const char *frameTypeKey = "frameTypeKey";
     exsitModel.connectEnable = beacon.connectEnable;
     exsitModel.peripheral = beacon.peripheral;
     exsitModel.rssi = [NSString stringWithFormat:@"%ld",(long)[beacon.rssi integerValue]];
-    if (ValidStr(beacon.deviceName)) {
-        exsitModel.deviceName = beacon.deviceName;
-    }
     if (exsitModel.lastScanDate > 0) {
         NSTimeInterval space = [[NSDate date] timeIntervalSince1970] * 1000 - exsitModel.lastScanDate;
         if (space > 10) {
@@ -197,6 +194,7 @@ static const char *frameTypeKey = "frameTypeKey";
         MKBXTTagInfoBeacon *tempInfoModel = (MKBXTTagInfoBeacon *)beacon;
         exsitModel.battery = tempInfoModel.battery;
         exsitModel.tagID = tempInfoModel.tagID;
+        exsitModel.deviceName = tempInfoModel.deviceName;
     }
     
     //如果是URL、TLM、UID、iBeacon的一种，

@@ -31,6 +31,9 @@
 
 @property (nonatomic, assign)BOOL disconnectType;
 
+/// 设备如果正在进行dfu，会出现断开连接让设备进入升级模式的现象，
+@property (nonatomic, assign)BOOL dfu;
+
 @end
 
 @implementation MKBXTTabBarController
@@ -73,6 +76,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deviceConnectStateChanged)
                                                  name:mk_bxt_peripheralConnectStateChangedNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deviceStartDFUProcess)
+                                                 name:@"mk_bxt_startDfuProcessNotification"
                                                object:nil];
 }
 
@@ -119,7 +126,7 @@
 }
 
 - (void)centralManagerStateChanged{
-    if (self.disconnectType) {
+    if (self.disconnectType || self.dfu) {
         return;
     }
     if ([MKBXTCentralManager shared].centralStatus != mk_bxt_centralManagerStatusEnable) {
@@ -128,11 +135,15 @@
 }
 
 - (void)deviceConnectStateChanged {
-     if (self.disconnectType) {
+     if (self.disconnectType || self.dfu) {
         return;
     }
     [self showAlertWithMsg:@"The device is disconnected." title:@"Dismiss"];
     return;
+}
+
+- (void)deviceStartDFUProcess {
+    self.dfu = YES;
 }
 
 #pragma mark - private method

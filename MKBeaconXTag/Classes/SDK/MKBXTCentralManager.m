@@ -55,6 +55,8 @@ static dispatch_once_t onceToken;
 
 @property (nonatomic, assign)BOOL readingNeedPassword;
 
+@property (nonatomic, copy)void (^characteristicWriteBlock)(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error);
+
 @end
 
 @implementation MKBXTCentralManager
@@ -92,7 +94,6 @@ static dispatch_once_t onceToken;
                                 advertisementData:(NSDictionary<NSString *,id> *)advertisementData
                                              RSSI:(NSNumber *)RSSI {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"%@",advertisementData);
         NSArray *deviceList = [MKBXTBaseBeacon parseAdvData:advertisementData];
         for (NSInteger i = 0; i < deviceList.count; i ++) {
             MKBXTBaseBeacon *beaconModel = deviceList[i];
@@ -187,11 +188,13 @@ static dispatch_once_t onceToken;
     }
 }
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
+    if (self.characteristicWriteBlock) {
+        self.characteristicWriteBlock(peripheral, characteristic, error);
+    }
     if (error) {
         NSLog(@"+++++++++++++++++发送数据出错");
         return;
     }
-    
 }
 
 #pragma mark - public method
@@ -207,6 +210,20 @@ static dispatch_once_t onceToken;
     return ([MKBLEBaseCentralManager shared].centralStatus == MKCentralManagerStateEnable)
     ? mk_bxt_centralManagerStatusEnable
     : mk_bxt_centralManagerStatusUnable;
+}
+
+- (nullable CBCharacteristic *)otaContralCharacteristic {
+    if (self.connectStatus != mk_bxt_centralConnectStatusConnected || self.peripheral == nil) {
+        return nil;
+    }
+    return self.peripheral.bxt_otaControl;
+}
+
+- (nullable CBCharacteristic *)otaDataCharacteristic {
+    if (self.connectStatus != mk_bxt_centralConnectStatusConnected || self.peripheral == nil) {
+        return nil;
+    }
+    return self.peripheral.bxt_otaData;
 }
 
 - (void)startScan {
@@ -346,6 +363,11 @@ static dispatch_once_t onceToken;
         return;
     }
     [[MKBLEBaseCentralManager shared] addOperation:operation];
+}
+
+- (void)addCharacteristicWriteBlock:(void (^)(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error))block {
+    self.characteristicWriteBlock = nil;
+    self.characteristicWriteBlock = block;
 }
 
 - (BOOL)notifyThreeAxisData:(BOOL)notify {
@@ -532,6 +554,7 @@ static dispatch_once_t onceToken;
 - (void)clearAllParams {
     self.sucBlock = nil;
     self.failedBlock = nil;
+    self.characteristicWriteBlock = nil;
     if (!self.needPasswordBlock) {
         return;
     }

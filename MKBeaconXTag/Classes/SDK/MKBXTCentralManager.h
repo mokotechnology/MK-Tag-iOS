@@ -55,6 +55,10 @@ extern NSString *const mk_bxt_receiveHallSensorStatusChangedNotification;
 /// Current Bluetooth center status
 - (mk_bxt_centralManagerStatus )centralStatus;
 
+- (nullable CBCharacteristic *)otaContralCharacteristic;
+
+- (nullable CBCharacteristic *)otaDataCharacteristic;
+
 /// Bluetooth Center starts scanning
 - (void)startScan;
 
@@ -115,6 +119,10 @@ extern NSString *const mk_bxt_receiveHallSensorStatusChangedNotification;
                characteristic:(CBCharacteristic *)characteristic
                  successBlock:(void (^)(id returnData))successBlock
                  failureBlock:(void (^)(NSError *error))failureBlock;
+
+/// DFU
+/// @param block Callback
+- (void)addCharacteristicWriteBlock:(void (^)(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error))block;
 
 /// Monitor three-axis accelerometer data.
 /// @param notify notify

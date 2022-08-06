@@ -80,9 +80,7 @@
     //BLE升级
     [[MKHudManager share] showHUDWithTitle:@"Waiting..." inView:self.view isPenetration:NO];
     @weakify(self);
-    [self.dfuModule updateWithFileUrl:filePath progressBlock:^(CGFloat progress) {
-        
-    } sucBlock:^{
+    [self.dfuModule updateWithFileUrl:filePath sucBlock:^{
         @strongify(self);
         [[MKHudManager share] showHUDWithTitle:@"Update firmware successfully!" inView:self.view isPenetration:NO];
         [self performSelector:@selector(updateComplete) withObject:nil afterDelay:3.f];

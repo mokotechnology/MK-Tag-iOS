@@ -11,6 +11,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 #import "CBPeripheral+MKBXTAdd.h"
+#import "MKBXTSDKNormalDefines.h"
 
 @interface MKBXTPeripheral ()
 
@@ -29,7 +30,8 @@
 
 - (void)discoverServices {
     NSArray *services = @[[CBUUID UUIDWithString:@"180A"],  //厂商信息
-                          [CBUUID UUIDWithString:@"AA00"]]; //自定义
+                          [CBUUID UUIDWithString:@"AA00"],
+                          [CBUUID UUIDWithString:kBXTOtaServerUUIDString]]; //自定义
     [self.peripheral discoverServices:services];
 }
 
@@ -44,6 +46,10 @@
             NSArray *characteristics = @[[CBUUID UUIDWithString:@"AA01"],[CBUUID UUIDWithString:@"AA02"],
                                          [CBUUID UUIDWithString:@"AA06"],[CBUUID UUIDWithString:@"AA07"],
                                          [CBUUID UUIDWithString:@"AA08"]];
+            [self.peripheral discoverCharacteristics:characteristics forService:service];
+        }else if ([service.UUID isEqual:[CBUUID UUIDWithString:kBXTOtaServerUUIDString]]) {
+            NSArray *characteristics = @[[CBUUID UUIDWithString:kBXTOtaControlUUIDString],
+                                         [CBUUID UUIDWithString:kBXTOtaDataUUIDString]];
             [self.peripheral discoverCharacteristics:characteristics forService:service];
         }
     }

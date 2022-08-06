@@ -48,6 +48,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// R/N
 @property (nonatomic, strong, readonly)CBCharacteristic *bxt_hallSensor;
 
+#pragma mark - OTA
+
+@property (nonatomic, strong, readonly)CBCharacteristic *bxt_otaData;
+
+@property (nonatomic, strong, readonly)CBCharacteristic *bxt_otaControl;
+
 - (void)bxt_updateCharacterWithService:(CBService *)service;
 
 - (void)bxt_updateCurrentNotifySuccess:(CBCharacteristic *)characteristic;

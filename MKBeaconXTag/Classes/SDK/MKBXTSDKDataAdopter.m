@@ -191,8 +191,8 @@
         for (int i = 0; i < subData.length; i++) {
             data[i] = *cData++;
         }
-        for (int i = 0; i < advData.length - 3; i++) {
-            urlContent = [urlContent stringByAppendingString:[self getEncodedString:*(data + i + 3)]];
+        for (int i = 0; i < subData.length; i++) {
+            urlContent = [urlContent stringByAppendingString:[self getEncodedString:*(data + i)]];
         }
         
         return @{
@@ -340,7 +340,7 @@
         //如果不是符合官方要求的后缀名，判断长度是否小于2，如果是小于2则认为错误，否则直接认为符合要求
         //如果不是符合官方要求的后缀名，判断长度是否大于17，如果是大于17则认为错误，否则直接认为符合要求
         if (urlContent.length > 17 || urlContent.length < 2) {
-            return nil;
+            return @"";
         }
         for (NSInteger i = 0; i < urlContent.length; i ++) {
             int asciiCode = [urlContent characterAtIndex:i];
@@ -353,7 +353,7 @@
         }
         tempString = [tempString substringFromIndex:1];
         if (tempString.length > 16 || tempString.length < 1) {
-            return nil;
+            return @"";
         }
         for (NSInteger i = 0; i < tempString.length; i ++) {
             int asciiCode = [tempString characterAtIndex:i];

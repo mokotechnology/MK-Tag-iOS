@@ -197,7 +197,7 @@
 
 - (BOOL)configUID {
     __block BOOL success = NO;
-    [MKBXTInterface bxt_configSlotUIDWithIndex:self.slotType namespaceID:self.namespaceID instanceID:self.instanceID sucBlock:^{
+    [MKBXTInterface bxt_configSlotUIDWithIndex:self.index namespaceID:self.namespaceID instanceID:self.instanceID sucBlock:^{
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

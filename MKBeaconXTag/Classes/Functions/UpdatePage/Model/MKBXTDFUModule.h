@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MKBXTDFUModule : NSObject
 
 - (void)updateWithFileUrl:(NSString *)url
-            progressBlock:(void (^)(CGFloat progress))progressBlock
                  sucBlock:(void (^)(void))sucBlock
               failedBlock:(void (^)(NSError *error))failedBlock;
 

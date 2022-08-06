@@ -45,7 +45,7 @@
 
 @property (nonatomic, strong)UILabel *thresholdUnitLabel;
 
-@property (nonatomic, assign)NSInteger sampleRate;
+@property (nonatomic, assign)NSInteger scale;
 
 @end
 
@@ -92,7 +92,7 @@
         make.height.mas_equalTo(MKFont(13.f).lineHeight);
     }];
     [self.scaleButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.scaleLabel.mas_right).mas_offset(15.f);
+        make.right.mas_equalTo(self.textField.mas_right);
         make.width.mas_equalTo(50.f);
         make.top.mas_equalTo(self.msgLabel.mas_bottom).mas_offset(10.f);
         make.height.mas_equalTo(30.f);
@@ -105,7 +105,7 @@
         make.height.mas_equalTo(MKFont(13.f).lineHeight);
     }];
     [self.sampleRateButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.sampleRateLabel.mas_right).mas_offset(15.f);
+        make.right.mas_equalTo(self.textField.mas_right);
         make.width.mas_equalTo(50.f);
         make.top.mas_equalTo(self.scaleButton.mas_bottom).mas_offset(10.f);
         make.height.mas_equalTo(30.f);
@@ -117,14 +117,14 @@
         make.height.mas_equalTo(MKFont(13.f).lineHeight);
     }];
     [self.textField mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.thresholdLabel.mas_right).mas_offset(20.f);
+        make.right.mas_equalTo(self.thresholdUnitLabel.mas_left).mas_offset(-5.f);
         make.width.mas_equalTo(50.f);
         make.top.mas_equalTo(self.sampleRateButton.mas_bottom).mas_offset(10.f);
         make.height.mas_equalTo(35.f);
     }];
     [self.thresholdUnitLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15.f);
-        make.width.mas_equalTo(50.f);
+        make.width.mas_equalTo(70.f);
         make.centerY.mas_equalTo(self.textField.mas_centerY);
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
     }];
@@ -141,7 +141,8 @@
     }
     MKPickerView *pickView = [[MKPickerView alloc] init];
     [pickView showPickViewWithDataList:self.scaleList selectedRow:index block:^(NSInteger currentRow) {
-        self.sampleRate = currentRow;
+        self.scale = currentRow;
+        [self.scaleButton setTitle:self.scaleList[currentRow] forState:UIControlStateNormal];
         [self updateThresholdUnit];
         if ([self.delegate respondsToSelector:@selector(bxt_accelerationParamsScaleChanged:)]) {
             [self.delegate bxt_accelerationParamsScaleChanged:currentRow];
@@ -175,29 +176,29 @@
     }
     [self.scaleButton setTitle:self.scaleList[_dataModel.scale] forState:UIControlStateNormal];
     [self.sampleRateButton setTitle:self.sampleRateList[_dataModel.samplingRate] forState:UIControlStateNormal];
-    self.sampleRate = _dataModel.samplingRate;
+    self.scale = _dataModel.scale;
     self.textField.text = SafeStr(_dataModel.threshold);
     [self updateThresholdUnit];
 }
 
 #pragma mark - private method
 - (void)updateThresholdUnit {
-    if (self.sampleRate == 0) {
+    if (self.scale == 0) {
         //2g
         self.thresholdUnitLabel.text = @"x3.91mg";
         return;
     }
-    if (self.sampleRate == 1) {
+    if (self.scale == 1) {
         //4g
         self.thresholdUnitLabel.text = @"x7.81mg";
         return;
     }
-    if (self.sampleRate == 2) {
+    if (self.scale == 2) {
         //8g
         self.thresholdUnitLabel.text = @"x15.63mg";
         return;
     }
-    if (self.sampleRate == 3) {
+    if (self.scale == 3) {
         //16g
         self.thresholdUnitLabel.text = @"x31.25mg";
         return;

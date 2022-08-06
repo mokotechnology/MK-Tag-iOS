@@ -10,6 +10,8 @@
 
 #import <objc/runtime.h>
 
+#import "MKBXTSDKNormalDefines.h"
+
 static const char *bxt_manufacturerKey = "bxt_manufacturerKey";
 static const char *bxt_deviceModelKey = "bxt_deviceModelKey";
 static const char *bxt_productDateKey = "bxt_productDateKey";
@@ -22,6 +24,9 @@ static const char *bxt_disconnectTypeKey = "bxt_disconnectTypeKey";
 static const char *bxt_threeSensorKey = "bxt_threeSensorKey";
 static const char *bxt_passwordKey = "bxt_passwordKey";
 static const char *bxt_hallSensorKey = "bxt_hallSensorKey";
+
+static const char *bxt_otaControlKey = "bxt_otaControlKey";
+static const char *bxt_otaDataKey = "bxt_otaDataKey";
 
 static const char *bxt_passwordNotifySuccessKey = "bxt_passwordNotifySuccessKey";
 static const char *bxt_disconnectTypeNotifySuccessKey = "bxt_disconnectTypeNotifySuccessKey";
@@ -70,6 +75,17 @@ static const char *bxt_customNotifySuccessKey = "bxt_customNotifySuccessKey";
         }
         return;
     }
+    if ([service.UUID isEqual:[CBUUID UUIDWithString:kBXTOtaServerUUIDString]]) {
+        //OTA
+        for (CBCharacteristic *characteristic in characteristicList) {
+            if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kBXTOtaControlUUIDString]]) {
+                objc_setAssociatedObject(self, &bxt_otaControlKey, characteristic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            }else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kBXTOtaDataUUIDString]]) {
+                objc_setAssociatedObject(self, &bxt_otaDataKey, characteristic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            }
+        }
+        return;
+    }
 }
 
 - (void)bxt_updateCurrentNotifySuccess:(CBCharacteristic *)characteristic {
@@ -113,6 +129,9 @@ static const char *bxt_customNotifySuccessKey = "bxt_customNotifySuccessKey";
     objc_setAssociatedObject(self, &bxt_customKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(self, &bxt_threeSensorKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(self, &bxt_hallSensorKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    objc_setAssociatedObject(self, &bxt_otaControlKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &bxt_otaDataKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     objc_setAssociatedObject(self, &bxt_passwordNotifySuccessKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(self, &bxt_disconnectTypeNotifySuccessKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -163,6 +182,14 @@ static const char *bxt_customNotifySuccessKey = "bxt_customNotifySuccessKey";
 
 - (CBCharacteristic *)bxt_hallSensor {
     return objc_getAssociatedObject(self, &bxt_hallSensorKey);
+}
+
+- (CBCharacteristic *)bxt_otaData {
+    return objc_getAssociatedObject(self, &bxt_otaDataKey);
+}
+
+- (CBCharacteristic *)bxt_otaControl {
+    return objc_getAssociatedObject(self, &bxt_otaControlKey);
 }
 
 @end

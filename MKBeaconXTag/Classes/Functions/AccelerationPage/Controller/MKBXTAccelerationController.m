@@ -149,12 +149,7 @@ MKBXTAccelerationParamsCellDelegate>
     if (!ValidDict(dic)) {
         return;
     }
-    NSArray *tempList = dic[@"axisData"];
-    if (!ValidArray(tempList)) {
-        return;
-    }
-    NSDictionary *axisData = [tempList lastObject];
-    [self.headerView updateDataWithXData:axisData[@"xData"] yData:axisData[@"yData"] zData:axisData[@"zData"]];
+    [self.headerView updateDataWithXData:dic[@"xData"] yData:dic[@"yData"] zData:dic[@"zData"]];
 }
 
 #pragma mark - 读取数据

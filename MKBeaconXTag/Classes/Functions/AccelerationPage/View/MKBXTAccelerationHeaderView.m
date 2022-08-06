@@ -24,11 +24,7 @@
 
 @property (nonatomic, strong)UILabel *syncLabel;
 
-@property (nonatomic, strong)UILabel *xDataLabel;
-
-@property (nonatomic, strong)UILabel *yDataLabel;
-
-@property (nonatomic, strong)UILabel *zDataLabel;
+@property (nonatomic, strong)UILabel *dataLabel;
 
 @property (nonatomic, strong)UIView *bottomView;
 
@@ -49,9 +45,7 @@
         [self.backView addSubview:self.syncButton];
         [self.syncButton addSubview:self.synIcon];
         [self.backView addSubview:self.syncLabel];
-        [self.backView addSubview:self.xDataLabel];
-        [self.backView addSubview:self.yDataLabel];
-        [self.backView addSubview:self.zDataLabel];
+        [self.backView addSubview:self.dataLabel];
         [self addSubview:self.bottomView];
         [self.bottomView addSubview:self.mtCountLabel];
         [self.bottomView addSubview:self.mtCountValueLabel];
@@ -87,22 +81,10 @@
         make.height.mas_equalTo(MKFont(10.f).lineHeight);
     }];
     CGFloat width = (kViewWidth - 6 * 15.f) / 3;
-    [self.xDataLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.dataLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.syncButton.mas_right).mas_offset(5.f);
-        make.width.mas_equalTo(width);
+        make.right.mas_equalTo(-15.f);
         make.centerY.mas_equalTo(self.syncButton.mas_centerY).mas_offset(2.f);
-        make.height.mas_equalTo(MKFont(12.f).lineHeight);
-    }];
-    [self.yDataLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.xDataLabel.mas_right).mas_offset(5.f);
-        make.width.mas_equalTo(width);
-        make.centerY.mas_equalTo(self.xDataLabel.mas_centerY);
-        make.height.mas_equalTo(MKFont(12.f).lineHeight);
-    }];
-    [self.zDataLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.yDataLabel.mas_right).mas_offset(5.f);
-        make.width.mas_equalTo(width);
-        make.centerY.mas_equalTo(self.xDataLabel.mas_centerY);
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
     }];
     [self.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -159,9 +141,10 @@
 }
 
 - (void)updateDataWithXData:(NSString *)xData yData:(NSString *)yData zData:(NSString *)zData {
-    self.xDataLabel.text = [@"X-axis:0x" stringByAppendingString:xData];
-    self.yDataLabel.text = [@"Y-axis:0x" stringByAppendingString:yData];
-    self.zDataLabel.text = [@"Z-axis:0x" stringByAppendingString:zData];
+    NSString *xDataString = [NSString stringWithFormat:@"X-axis:%@%@",xData,@"mg"];
+    NSString *yDataString = [NSString stringWithFormat:@"Y-axis:%@%@",yData,@"mg"];
+    NSString *zDataString = [NSString stringWithFormat:@"Z-axis:%@%@",zData,@"mg"];
+    self.dataLabel.text = [NSString stringWithFormat:@"%@;%@;%@",xDataString,yDataString,zDataString];
 }
 
 #pragma mark - getter
@@ -205,37 +188,15 @@
     return _syncLabel;
 }
 
-- (UILabel *)xDataLabel {
-    if (!_xDataLabel) {
-        _xDataLabel = [[UILabel alloc] init];
-        _xDataLabel.textColor = DEFAULT_TEXT_COLOR;
-        _xDataLabel.textAlignment = NSTextAlignmentCenter;
-        _xDataLabel.font = MKFont(12.f);
-        _xDataLabel.text = @"X-axis:N/A";
+- (UILabel *)dataLabel {
+    if (!_dataLabel) {
+        _dataLabel = [[UILabel alloc] init];
+        _dataLabel.textColor = DEFAULT_TEXT_COLOR;
+        _dataLabel.textAlignment = NSTextAlignmentLeft;
+        _dataLabel.font = MKFont(12.f);
+        _dataLabel.text = @"X-axis:N/A;Y-axis:N/A;Z-axis:N/A";
     }
-    return _xDataLabel;
-}
-
-- (UILabel *)yDataLabel {
-    if (!_yDataLabel) {
-        _yDataLabel = [[UILabel alloc] init];
-        _yDataLabel.textColor = DEFAULT_TEXT_COLOR;
-        _yDataLabel.textAlignment = NSTextAlignmentCenter;
-        _yDataLabel.font = MKFont(12.f);
-        _yDataLabel.text = @"Y-axis:N/A";
-    }
-    return _yDataLabel;
-}
-
-- (UILabel *)zDataLabel {
-    if (!_zDataLabel) {
-        _zDataLabel = [[UILabel alloc] init];
-        _zDataLabel.textColor = DEFAULT_TEXT_COLOR;
-        _zDataLabel.textAlignment = NSTextAlignmentCenter;
-        _zDataLabel.font = MKFont(12.f);
-        _zDataLabel.text = @"Z-axis:N/A";
-    }
-    return _zDataLabel;
+    return _dataLabel;
 }
 
 - (UIView *)bottomView {

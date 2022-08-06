@@ -1,4 +1,8 @@
 
+static NSString *const kBXTOtaServerUUIDString = @"1d14d6ee-fd63-4fa1-bfa4-8f47b42119f0";
+static NSString *const kBXTOtaControlUUIDString = @"f7bf3564-fb6d-4e53-88a4-5e37e0326063";
+static NSString *const kBXTOtaDataUUIDString = @"984227f3-34fc-4045-a5d0-2c581f81a153";
+
 #pragma mark ****************************************Enumerate************************************************
 
 #pragma mark - MKMTCentralManager
