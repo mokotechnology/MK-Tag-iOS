@@ -35,6 +35,8 @@ TODO: Add long description of the pod here.
   s.resource_bundles = {
     'MKBeaconXTag' => ['MKBeaconXTag/Assets/*.png']
   }
+  
+  
 
   s.dependency 'MKBaseModuleLibrary'
   s.dependency 'MKCustomUIModule'
@@ -44,6 +46,5 @@ TODO: Add long description of the pod here.
   s.dependency 'HHTransition'
   s.dependency 'MLInputDodger'
   s.dependency 'CTMediator'
-  s.dependency 'iOSDFULibrary'
   
 end

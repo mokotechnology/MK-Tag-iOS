@@ -238,8 +238,6 @@ MKBXTSlotTriggerCellDelegate>
 #pragma mark - MKBXTSlotTriggerCellDelegate
 - (void)bxt_trigger_statusChanged:(BOOL)isOn {
     self.dataModel.triggerIsOn = isOn;
-//    MKBXTSlotTriggerCellModel *cellModel = self.section2List[0];
-//    cellModel.isOn = self.dataModel.triggerIsOn;
     [self.tableView mk_reloadSection:2 withRowAnimation:UITableViewRowAnimationNone];
 }
 
@@ -247,46 +245,32 @@ MKBXTSlotTriggerCellDelegate>
 /// @param triggerType 0:Motion detection   1:Magnetic detection
 - (void)bxt_trigger_triggerTypeChanged:(NSInteger)triggerType {
     self.dataModel.triggerType = triggerType;
-//    MKBXTSlotTriggerCellModel *cellModel = self.section2List[0];
-//    cellModel.triggerType = self.dataModel.triggerType;
 }
 
 #pragma mark - Motion Trigger(triggerType = 0)
 - (void)bxt_trigger_motion_startStatusChanged:(BOOL)start {
     self.dataModel.motionStart = start;
-//    MKBXTSlotTriggerCellModel *cellModel = self.section2List[0];
-//    cellModel.motionStart = self.dataModel.motionStart;
 }
 
 - (void)bxt_trigger_motion_startIntervalChanged:(NSString *)startInterval {
     self.dataModel.motionStartInterval = startInterval;
-//    MKBXTSlotTriggerCellModel *cellModel = self.section2List[0];
-//    cellModel.motionStartInterval = self.dataModel.motionStartInterval;
 }
 
 - (void)bxt_trigger_motion_startStaticIntervalChanged:(NSString *)staticInterval {
     self.dataModel.motionStartStaticInterval = staticInterval;
-//    MKBXTSlotTriggerCellModel *cellModel = self.section2List[0];
-//    cellModel.motionStartStaticInterval = self.dataModel.motionStartStaticInterval;
 }
 
 - (void)bxt_trigger_motion_stopStaticIntervalChanged:(NSString *)staticInterval {
     self.dataModel.motionStopStaticInterval = staticInterval;
-//    MKBXTSlotTriggerCellModel *cellModel = self.section2List[0];
-//    cellModel.motionStopStaticInterval = self.dataModel.motionStopStaticInterval;
 }
 
 #pragma mark - Magnetic Trigger(triggerType = 1)
 - (void)bxt_trigger_magnetic_startStatusChanged:(BOOL)start {
     self.dataModel.magneticStart = start;
-//    MKBXTSlotTriggerCellModel *cellModel = self.section2List[0];
-//    cellModel.magneticStart = self.dataModel.magneticStart;
 }
 
 - (void)bxt_trigger_magnetic_startIntervalChanged:(NSString *)startInterval {
     self.dataModel.magneticInterval = startInterval;
-//    MKBXTSlotTriggerCellModel *cellModel = self.section2List[0];
-//    cellModel.magneticInterval = self.dataModel.magneticInterval;
 }
 
 #pragma mark - interface
