@@ -94,6 +94,7 @@ static dispatch_once_t onceToken;
                                 advertisementData:(NSDictionary<NSString *,id> *)advertisementData
                                              RSSI:(NSNumber *)RSSI {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"%@",advertisementData);
         NSArray *deviceList = [MKBXTBaseBeacon parseAdvData:advertisementData];
         for (NSInteger i = 0; i < deviceList.count; i ++) {
             MKBXTBaseBeacon *beaconModel = deviceList[i];

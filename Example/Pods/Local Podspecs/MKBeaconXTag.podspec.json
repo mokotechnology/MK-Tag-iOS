@@ -1,6 +1,6 @@
 {
   "name": "MKBeaconXTag",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "summary": "A short description of MKBeaconXTag.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/aadyx2007@163.com/MKBeaconXTag",
@@ -13,38 +13,383 @@
   },
   "source": {
     "git": "https://github.com/aadyx2007@163.com/MKBeaconXTag.git",
-    "tag": "0.1.0"
+    "tag": "0.0.1"
   },
   "platforms": {
     "ios": "12.0"
   },
-  "source_files": "MKBeaconXTag/Classes/**/*",
   "resource_bundles": {
     "MKBeaconXTag": [
       "MKBeaconXTag/Assets/*.png"
     ]
   },
-  "dependencies": {
-    "MKBaseModuleLibrary": [
+  "subspecs": [
+    {
+      "name": "ConnectManager",
+      "source_files": "MKBeaconXTag/Classes/ConnectManager/**",
+      "dependencies": {
+        "MKBeaconXTag/SDK": [
 
-    ],
-    "MKCustomUIModule": [
+        ],
+        "MKBaseModuleLibrary": [
 
-    ],
-    "MKBaseBleModule": [
+        ]
+      }
+    },
+    {
+      "name": "CTMediator",
+      "source_files": "MKBeaconXTag/Classes/CTMediator/**",
+      "dependencies": {
+        "MKBaseModuleLibrary": [
 
-    ],
-    "MKBeaconXCustomUI": [
+        ],
+        "CTMediator": [
 
-    ],
-    "HHTransition": [
+        ]
+      }
+    },
+    {
+      "name": "SDK",
+      "source_files": "MKBeaconXTag/Classes/SDK/**",
+      "dependencies": {
+        "MKBaseBleModule": [
 
-    ],
-    "MLInputDodger": [
+        ]
+      }
+    },
+    {
+      "name": "Target",
+      "source_files": "MKBeaconXTag/Classes/Target/**",
+      "dependencies": {
+        "MKBeaconXTag/Functions": [
 
-    ],
-    "CTMediator": [
+        ]
+      }
+    },
+    {
+      "name": "Functions",
+      "dependencies": {
+        "MKBeaconXTag/SDK": [
 
-    ]
-  }
+        ],
+        "MKBeaconXTag/CTMediator": [
+
+        ],
+        "MKBeaconXTag/ConnectManager": [
+
+        ],
+        "MKBaseModuleLibrary": [
+
+        ],
+        "MKCustomUIModule": [
+
+        ],
+        "MKBeaconXCustomUI": [
+
+        ],
+        "HHTransition": [
+
+        ],
+        "MLInputDodger": [
+
+        ]
+      },
+      "subspecs": [
+        {
+          "name": "AboutPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/AboutPage/Controller/**"
+            }
+          ]
+        },
+        {
+          "name": "AccelerationPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/AccelerationPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/AccelerationPage/Model": [
+
+                ],
+                "MKBeaconXTag/Functions/AccelerationPage/View": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/AccelerationPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKBeaconXTag/Classes/Functions/AccelerationPage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "DeviceInfoPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/DeviceInfoPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/DeviceInfoPage/Model": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/DeviceInfoPage/Model/**"
+            }
+          ]
+        },
+        {
+          "name": "HallSensorPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/HallSensorPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/HallSensorPage/Model": [
+
+                ],
+                "MKBeaconXTag/Functions/HallSensorPage/View": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/HallSensorPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKBeaconXTag/Classes/Functions/HallSensorPage/View/**"
+            }
+          ]
+        },
+        {
+          "name": "QuickSwitchPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/QuickSwitchPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/QuickSwitchPage/Model": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/QuickSwitchPage/Model/**"
+            }
+          ]
+        },
+        {
+          "name": "ScanPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/ScanPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/ScanPage/Model": [
+
+                ],
+                "MKBeaconXTag/Functions/ScanPage/View": [
+
+                ],
+                "MKBeaconXTag/Functions/ScanPage/Adopter": [
+
+                ],
+                "MKBeaconXTag/Functions/TabBarPage/Controller": [
+
+                ],
+                "MKBeaconXTag/Functions/AboutPage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "View",
+              "source_files": "MKBeaconXTag/Classes/Functions/ScanPage/View/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/ScanPage/Model": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/ScanPage/Model/**"
+            },
+            {
+              "name": "Adopter",
+              "source_files": "MKBeaconXTag/Classes/Functions/ScanPage/Adopter/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/ScanPage/Model": [
+
+                ],
+                "MKBeaconXTag/Functions/ScanPage/View": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "SensorConfigPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/SensorConfigPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/AccelerationPage/Controller": [
+
+                ],
+                "MKBeaconXTag/Functions/HallSensorPage/Controller": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "SettingPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/SettingPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/SensorConfigPage/Controller": [
+
+                ],
+                "MKBeaconXTag/Functions/QuickSwitchPage/Controller": [
+
+                ],
+                "MKBeaconXTag/Functions/UpdatePage/Controller": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "SlotConfigPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/SlotConfigPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/SlotConfigPage/Model": [
+
+                ],
+                "MKBeaconXTag/Functions/SlotConfigPage/View": [
+
+                ],
+                "MKBeaconXTag/Functions/SlotConfigPage/Adopter": [
+
+                ],
+                "MKBeaconXTag/Functions/SlotConfigPage/Defines": [
+
+                ]
+              }
+            },
+            {
+              "name": "View",
+              "source_files": "MKBeaconXTag/Classes/Functions/SlotConfigPage/View/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/SlotConfigPage/Adopter": [
+
+                ],
+                "MKBeaconXTag/Functions/SlotConfigPage/Defines": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/SlotConfigPage/Model/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/SlotConfigPage/Defines": [
+
+                ]
+              }
+            },
+            {
+              "name": "Adopter",
+              "source_files": "MKBeaconXTag/Classes/Functions/SlotConfigPage/Adopter/**"
+            },
+            {
+              "name": "Defines",
+              "source_files": "MKBeaconXTag/Classes/Functions/SlotConfigPage/Defines/**"
+            }
+          ]
+        },
+        {
+          "name": "SlotPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/SlotPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/SlotPage/Model": [
+
+                ],
+                "MKBeaconXTag/Functions/SlotConfigPage/Controller": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/SlotPage/Model/**"
+            }
+          ]
+        },
+        {
+          "name": "TabBarPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/TabBarPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/SlotPage/Controller": [
+
+                ],
+                "MKBeaconXTag/Functions/SettingPage/Controller": [
+
+                ],
+                "MKBeaconXTag/Functions/DeviceInfoPage/Controller": [
+
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "UpdatePage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/UpdatePage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/UpdatePage/Model": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/UpdatePage/Model/**"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

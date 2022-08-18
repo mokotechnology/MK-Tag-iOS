@@ -475,6 +475,7 @@ MKBXTScanDeviceInfoCellDelegate>
 #pragma mark - UI
 - (void)loadSubViews {
     [self.view setBackgroundColor:RGBCOLOR(237, 243, 250)];
+    self.leftButton.hidden = YES;
     [self.rightButton setImage:LOADICON(@"MKBeaconXTag", @"MKBXTScanController", @"bxt_scanRightAboutIcon.png") forState:UIControlStateNormal];
     self.titleLabel.text = @"DEVICE(0)";
     UIView *topView = [[UIView alloc] init];

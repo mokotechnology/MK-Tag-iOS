@@ -10,8 +10,8 @@
 #endif
 #endif
 
-#import "MKBXTConnectManager.h"
 #import "CTMediator+MKBXTAdd.h"
+#import "MKBXTConnectManager.h"
 #import "MKBXTAboutController.h"
 #import "MKBXTAccelerationController.h"
 #import "MKBXTAccelerationModel.h"

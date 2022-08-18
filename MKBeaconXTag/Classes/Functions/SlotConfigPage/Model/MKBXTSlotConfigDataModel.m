@@ -98,6 +98,11 @@
                 [self operationFailedBlockWithMsg:@"Config Slot Data Error" block:failedBlock];
                 return;
             }
+        }else if (self.slotType == bxt_slotType_null) {
+            if (![self configNoData]) {
+                [self operationFailedBlockWithMsg:@"Config Slot Data Error" block:failedBlock];
+                return;
+            }
         }
         if (self.triggerIsOn) {
             //打开了触发
@@ -234,6 +239,18 @@
 - (BOOL)configTagInfo {
     __block BOOL success = NO;
     [MKBXTInterface bxt_configSlotTagInfoWithIndex:self.index deviceName:self.deviceName tagID:self.tagID sucBlock:^{
+        success = YES;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)configNoData {
+    __block BOOL success = NO;
+    [MKBXTInterface bxt_configSlotNoDataWithIndex:self.index sucBlock:^{
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
