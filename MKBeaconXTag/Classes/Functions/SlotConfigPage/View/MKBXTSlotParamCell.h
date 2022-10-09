@@ -25,15 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger rssi;
 
 /*
- 0:-40dBm
- 1:-20dBm
- 2:-16dBm
- 3:-12dBm
- 4:-8dBm
- 5:-4dBm
- 6:0dBm
- 7:3dBm
- 8:4dBm
+ 0:-20dBm
+ 1:-16dBm
+ 2:-12dBm
+ 3:-8dBm
+ 4:-4dBm
+ 5:0dBm
+ 6:3dBm
+ 7:4dBm
+ 8:6dBm
  */
 @property (nonatomic, assign)NSInteger txPower;
 

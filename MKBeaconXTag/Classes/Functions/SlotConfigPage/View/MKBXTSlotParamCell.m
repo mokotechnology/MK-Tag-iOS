@@ -140,31 +140,31 @@
 
 #pragma mark - private method
 - (NSString *)txPowerValueText:(NSInteger)value{
-    if (value == 0) {
-        return @"-40dBm";
-    }
-    if (value == 1){
+    if (value == 0){
         return @"-20dBm";
     }
-    if (value == 2){
+    if (value == 1){
         return @"-16dBm";
     }
-    if (value == 3){
+    if (value == 2){
         return @"-12dBm";
     }
-    if (value == 4){
+    if (value == 3){
         return @"-8dBm";
     }
-    if (value == 5){
+    if (value == 4){
         return @"-4dBm";
     }
-    if (value == 6){
+    if (value == 5){
         return @"0dBm";
     }
-    if (value == 7) {
+    if (value == 6) {
         return @"3dBm";
     }
-    return @"4dBm";
+    if (value == 7) {
+        return @"4dBm";
+    }
+    return @"6dBm";
 }
 
 - (void)updateRssiMsg {
@@ -518,7 +518,7 @@
     if (!_txPowerLabel) {
         _txPowerLabel = [[UILabel alloc] init];
         _txPowerLabel.textAlignment = NSTextAlignmentLeft;
-        _txPowerLabel.attributedText = [MKCustomUIAdopter attributedString:@[@"Tx power",@"   (-40,-20,-16,-12,-8,-4,0,+3,+4)"] fonts:@[MKFont(13.f),MKFont(12.f)] colors:@[DEFAULT_TEXT_COLOR,RGBCOLOR(223, 223, 223)]];
+        _txPowerLabel.attributedText = [MKCustomUIAdopter attributedString:@[@"Tx power",@"   (-20,-16,-12,-8,-4,0,+3,+4，+6)"] fonts:@[MKFont(13.f),MKFont(12.f)] colors:@[DEFAULT_TEXT_COLOR,RGBCOLOR(223, 223, 223)]];
     }
     return _txPowerLabel;
 }
@@ -526,7 +526,7 @@
 - (MKSlider *)txPowerSlider {
     if (!_txPowerSlider) {
         _txPowerSlider = [[MKSlider alloc] init];
-        _txPowerSlider.maximumValue = 9.f;
+        _txPowerSlider.maximumValue = 8.f;
         _txPowerSlider.minimumValue = 0.f;
         _txPowerSlider.value = 0.f;
         [_txPowerSlider addTarget:self

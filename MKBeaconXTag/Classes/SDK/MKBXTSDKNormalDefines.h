@@ -36,8 +36,7 @@ typedef NS_ENUM(NSInteger, mk_bxt_threeAxisDataAG) {
 };
 
 typedef NS_ENUM(NSInteger, mk_bxt_txPower) {
-    mk_bxt_txPowerNeg40dBm,   //RadioTxPower:-40dBm
-    mk_bxt_txPowerNeg20dBm,   //-20dBm
+    mk_bxt_txPowerNeg20dBm,   //RadioTxPower:-20dBm
     mk_bxt_txPowerNeg16dBm,   //-16dBm
     mk_bxt_txPowerNeg12dBm,   //-12dBm
     mk_bxt_txPowerNeg8dBm,    //-8dBm
@@ -45,6 +44,7 @@ typedef NS_ENUM(NSInteger, mk_bxt_txPower) {
     mk_bxt_txPower0dBm,       //0dBm
     mk_bxt_txPower3dBm,       //3dBm
     mk_bxt_txPower4dBm,       //4dBm
+    mk_bxt_txPower6dBm,       //6dBm
 };
 
 typedef NS_ENUM(NSInteger, mk_bxt_urlHeaderType) {

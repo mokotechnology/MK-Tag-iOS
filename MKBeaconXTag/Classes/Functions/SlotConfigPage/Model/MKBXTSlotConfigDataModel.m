@@ -30,11 +30,11 @@
     if (self = [self init]) {
         self.index = index;
         self.motionStart = YES;
-        self.motionStartInterval = @"50";
+        self.motionStartInterval = @"60";
         self.motionStartStaticInterval = @"30";
         self.motionStopStaticInterval = @"30";
         self.magneticStart = YES;
-        self.magneticInterval = @"50";
+        self.magneticInterval = @"60";
     }
     return self;
 }
@@ -394,31 +394,31 @@
 }
 
 - (NSInteger)getTxPowerValue:(NSString *)power {
-    if ([power isEqualToString:@"-40dBm"]) {
+    if ([power isEqualToString:@"-20dBm"]) {
         return 0;
     }
-    if ([power isEqualToString:@"-20dBm"]) {
+    if ([power isEqualToString:@"-16dBm"]) {
         return 1;
     }
-    if ([power isEqualToString:@"-16dBm"]) {
+    if ([power isEqualToString:@"-12dBm"]) {
         return 2;
     }
-    if ([power isEqualToString:@"-12dBm"]) {
+    if ([power isEqualToString:@"-8dBm"]) {
         return 3;
     }
-    if ([power isEqualToString:@"-8dBm"]) {
+    if ([power isEqualToString:@"-4dBm"]) {
         return 4;
     }
-    if ([power isEqualToString:@"-4dBm"]) {
+    if ([power isEqualToString:@"0dBm"]) {
         return 5;
     }
-    if ([power isEqualToString:@"0dBm"]) {
+    if ([power isEqualToString:@"3dBm"]) {
         return 6;
     }
-    if ([power isEqualToString:@"3dBm"]) {
+    if ([power isEqualToString:@"4dBm"]) {
         return 7;
     }
-    if ([power isEqualToString:@"4dBm"]) {
+    if ([power isEqualToString:@"6dBm"]) {
         return 8;
     }
     return 0;

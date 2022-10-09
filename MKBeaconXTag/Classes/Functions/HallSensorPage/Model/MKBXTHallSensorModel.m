@@ -63,7 +63,7 @@
 
 - (BOOL)readTriggerCount {
     __block BOOL success = NO;
-    [MKBXTInterface bxt_readMotionTriggerCountWithSucBlock:^(id  _Nonnull returnData) {
+    [MKBXTInterface bxt_readHallTriggerCountWithSucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.count = returnData[@"result"][@"count"];
         dispatch_semaphore_signal(self.semaphore);

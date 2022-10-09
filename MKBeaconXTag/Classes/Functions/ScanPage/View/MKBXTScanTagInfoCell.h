@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *magneticCount;
 
+@property (nonatomic, assign)BOOL triaxialSensor;
+
 @property (nonatomic, assign)BOOL motionStatus;
 
 @property (nonatomic, copy)NSString *motionCount;

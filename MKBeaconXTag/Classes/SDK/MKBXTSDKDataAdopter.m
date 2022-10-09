@@ -93,6 +93,9 @@
 
 + (NSString *)fetchTxPower:(mk_bxt_txPower)txPower {
     switch (txPower) {
+        case mk_bxt_txPower6dBm:
+            return @"06";
+            
         case mk_bxt_txPower4dBm:
             return @"04";
             
@@ -116,13 +119,13 @@
             
         case mk_bxt_txPowerNeg20dBm:
             return @"ec";
-            
-        case mk_bxt_txPowerNeg40dBm:
-            return @"d8";
     }
 }
 
 + (NSString *)fetchTxPowerValueString:(NSString *)content {
+    if ([content isEqualToString:@"06"]) {
+        return @"6dBm";
+    }
     if ([content isEqualToString:@"04"]) {
         return @"4dBm";
     }
@@ -146,9 +149,6 @@
     }
     if ([content isEqualToString:@"ec"]) {
         return @"-20dBm";
-    }
-    if ([content isEqualToString:@"d8"]) {
-        return @"-40dBm";
     }
     return @"0dBm";
 }

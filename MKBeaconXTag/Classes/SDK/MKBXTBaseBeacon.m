@@ -282,12 +282,15 @@
         NSString *binary = [MKBLEBaseSDKAdopter binaryByhex:state];
         self.magnetStatus = [[binary substringWithRange:NSMakeRange(7, 1)] isEqualToString:@"1"];
         self.moved = [[binary substringWithRange:NSMakeRange(6, 1)] isEqualToString:@"1"];
-        self.triaxialSensor = [[binary substringWithRange:NSMakeRange(6, 1)] isEqualToString:@"1"];
+        self.triaxialSensor = [[binary substringWithRange:NSMakeRange(5, 1)] isEqualToString:@"1"];
         self.hallSensorCount = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(2, 4)];
         self.movedCount = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(6, 4)];
-        self.xData = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(10, 4)];
-        self.yData = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(14, 4)];
-        self.zData = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(18, 4)];
+        NSNumber *xData = [MKBLEBaseSDKAdopter signedHexTurnString:[content substringWithRange:NSMakeRange(10, 4)]];
+        self.xData = [NSString stringWithFormat:@"%@",xData];
+        NSNumber *yData = [MKBLEBaseSDKAdopter signedHexTurnString:[content substringWithRange:NSMakeRange(14, 4)]];
+        self.yData = [NSString stringWithFormat:@"%@",yData];
+        NSNumber *zData = [MKBLEBaseSDKAdopter signedHexTurnString:[content substringWithRange:NSMakeRange(18, 4)]];
+        self.zData = [NSString stringWithFormat:@"%@",zData];
         self.battery = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(30, 4)];
         self.tagID = [content substringFromIndex:34];
     }

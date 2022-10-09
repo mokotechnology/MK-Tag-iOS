@@ -115,7 +115,6 @@
     
     if ([cmd isEqualToString:@"51"]) {
         //验证密码
-        success =
         operationID = mk_bxt_connectPasswordOperation;
     }else if ([cmd isEqualToString:@"52"]) {
         //修改密码

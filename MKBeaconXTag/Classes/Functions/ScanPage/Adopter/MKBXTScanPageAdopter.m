@@ -136,6 +136,7 @@ static const char *frameTypeKey = "frameTypeKey";
         MKBXTScanTagInfoCellModel *cellModel = [[MKBXTScanTagInfoCellModel alloc] init];
         cellModel.magneticStatus = tempModel.magnetStatus;
         cellModel.magneticCount = tempModel.hallSensorCount;
+        cellModel.triaxialSensor = tempModel.triaxialSensor;
         cellModel.motionStatus = tempModel.moved;
         cellModel.motionCount = tempModel.movedCount;
         cellModel.xData = tempModel.xData;

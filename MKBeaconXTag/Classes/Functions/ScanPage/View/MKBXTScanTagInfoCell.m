@@ -83,7 +83,7 @@
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
     }];
     [self.msValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_centerX).mas_offset(5.f);
+        make.left.mas_equalTo(self.contentView.mas_centerX);
         make.right.mas_equalTo(-15.f);
         make.centerY.mas_equalTo(self.msLabel.mas_centerY);
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
@@ -95,7 +95,7 @@
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
     }];
     [self.mtcValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_centerX).mas_offset(5.f);
+        make.left.mas_equalTo(self.contentView.mas_centerX);
         make.right.mas_equalTo(-15.f);
         make.centerY.mas_equalTo(self.mtcLabel.mas_centerY);
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
@@ -107,7 +107,7 @@
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
     }];
     [self.mosValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_centerX).mas_offset(5.f);
+        make.left.mas_equalTo(self.contentView.mas_centerX);
         make.right.mas_equalTo(-15.f);
         make.centerY.mas_equalTo(self.mosLabel.mas_centerY);
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
@@ -119,7 +119,7 @@
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
     }];
     [self.motcValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_centerX).mas_offset(5.f);
+        make.left.mas_equalTo(self.contentView.mas_centerX);
         make.right.mas_equalTo(-15.f);
         make.centerY.mas_equalTo(self.motcLabel.mas_centerY);
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
@@ -131,7 +131,7 @@
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
     }];
     [self.accValueLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_centerX).mas_offset(5.f);
+        make.left.mas_equalTo(self.contentView.mas_centerX);
         make.right.mas_equalTo(-15.f);
         make.centerY.mas_equalTo(self.accLabel.mas_centerY);
         make.height.mas_equalTo(MKFont(12.f).lineHeight);
@@ -147,9 +147,17 @@
     }
     self.msValueLabel.text = (_dataModel.magneticStatus ? @"Absent" : @"Present");
     self.mtcValueLabel.text = SafeStr(_dataModel.magneticCount);
-    self.mosValueLabel.text = (_dataModel.motionStatus ? @"In progress" : @"No Movement");
-    self.motcValueLabel.text = SafeStr(_dataModel.motionCount);
-    self.accValueLabel.text = [NSString stringWithFormat:@"X: %@mg;Y: %@mg;Z: %@mg",SafeStr(_dataModel.xData),SafeStr(_dataModel.yData),SafeStr(_dataModel.zData)];
+    self.mosLabel.hidden = !_dataModel.triaxialSensor;
+    self.mosValueLabel.hidden = !_dataModel.triaxialSensor;
+    self.motcLabel.hidden = !_dataModel.triaxialSensor;
+    self.motcValueLabel.hidden = !_dataModel.triaxialSensor;
+    self.accLabel.hidden = !_dataModel.triaxialSensor;
+    self.accValueLabel.hidden = !_dataModel.triaxialSensor;
+    if (_dataModel.triaxialSensor) {
+        self.mosValueLabel.text = (_dataModel.motionStatus ? @"In progress" : @"No Movement");
+        self.motcValueLabel.text = SafeStr(_dataModel.motionCount);
+        self.accValueLabel.text = [NSString stringWithFormat:@"X: %@mg;Y: %@mg;Z: %@mg",SafeStr(_dataModel.xData),SafeStr(_dataModel.yData),SafeStr(_dataModel.zData)];
+    }
 }
 
 #pragma mark - getter
@@ -243,7 +251,7 @@
     UILabel *label = [[UILabel alloc] init];
     label.textColor = RGBCOLOR(184, 184, 184);
     label.textAlignment = NSTextAlignmentLeft;
-    label.font = MKFont(12.f);
+    label.font = MKFont(10.f);
     return label;
 }
 
