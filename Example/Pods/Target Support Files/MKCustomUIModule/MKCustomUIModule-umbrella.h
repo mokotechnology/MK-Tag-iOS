@@ -19,6 +19,7 @@
 #import "MKMeasureTxPowerCell.h"
 #import "MKMixedChoiceCell.h"
 #import "MKRawAdvDataOperationCell.h"
+#import "MKButtonMsgCell.h"
 #import "MKNormalSliderCell.h"
 #import "MKNormalTextCell.h"
 #import "MKSettingTextCell.h"
