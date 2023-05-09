@@ -17,6 +17,10 @@
 #import "UIView+MKAdd.h"
 
 #import "MKHudManager.h"
+#import "MKTableSectionLineHeader.h"
+#import "MKSettingTextCell.h"
+
+#import "MKBXTConnectManager.h"
 
 #import "MKBXTCentralManager.h"
 #import "MKBXTInterface+MKBXTConfig.h"
@@ -25,6 +29,8 @@
 
 #import "MKBXTAccelerationHeaderView.h"
 #import "MKBXTAccelerationParamsCell.h"
+
+#import "MKBXTStaticHeartbeatController.h"
 
 @interface MKBXTAccelerationController ()<UITableViewDelegate,
 UITableViewDataSource,
@@ -35,9 +41,13 @@ MKBXTAccelerationParamsCellDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
-@property (nonatomic, strong)NSMutableArray *dataList;
+@property (nonatomic, strong)NSMutableArray *section0List;
+
+@property (nonatomic, strong)NSMutableArray *section1List;
 
 @property (nonatomic, strong)MKBXTAccelerationModel *dataModel;
+
+@property (nonatomic, strong)NSMutableArray *headerList;
 
 @end
 
@@ -82,22 +92,58 @@ MKBXTAccelerationParamsCellDelegate>
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 160.f;
+    if (indexPath.section == 0) {
+        return 160.f;
+    }
+    if (indexPath.section == 1) {
+        return 44.f;
+    }
+    return 0.f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 20.f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    MKTableSectionLineHeader *headerView = [MKTableSectionLineHeader initHeaderViewWithTableView:tableView];
+    headerView.headerModel = self.headerList[section];
+    return headerView;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        //Static heartbeat
+        MKBXTStaticHeartbeatController *vc = [[MKBXTStaticHeartbeatController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.headerList.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataList.count;
+    if (section == 0) {
+        return self.section0List.count;
+    }
+    if (section == 1) {
+        return ([MKBXTConnectManager shared].supportHeartbeat ? self.section1List.count : 0);
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MKBXTAccelerationParamsCell *cell = [MKBXTAccelerationParamsCell initCellWithTableView:tableView];
-    cell.dataModel = self.dataList[indexPath.row];
-    cell.delegate = self;
+    if (indexPath.section == 0) {
+        MKBXTAccelerationParamsCell *cell = [MKBXTAccelerationParamsCell initCellWithTableView:tableView];
+        cell.dataModel = self.section0List[indexPath.row];
+        cell.delegate = self;
+        return cell;
+    }
+    MKSettingTextCell *cell = [MKSettingTextCell initCellWithTableView:tableView];
+    cell.dataModel = self.section1List[indexPath.row];
     return cell;
 }
 
@@ -123,7 +169,7 @@ MKBXTAccelerationParamsCellDelegate>
 /// @param scale 0:±2g,1:±4g,2:±8g,3:±16g
 - (void)bxt_accelerationParamsScaleChanged:(NSInteger)scale {
     self.dataModel.scale = scale;
-    MKBXTAccelerationParamsCellModel *cellModel = self.dataList[0];
+    MKBXTAccelerationParamsCellModel *cellModel = self.section0List[0];
     cellModel.scale = scale;
 }
 
@@ -131,7 +177,7 @@ MKBXTAccelerationParamsCellDelegate>
 /// @param samplingRate 0:1hz,1:10hz,2:25hz,3:50hz,4:100hz
 - (void)bxt_accelerationParamsSamplingRateChanged:(NSInteger)samplingRate {
     self.dataModel.samplingRate = samplingRate;
-    MKBXTAccelerationParamsCellModel *cellModel = self.dataList[0];
+    MKBXTAccelerationParamsCellModel *cellModel = self.section0List[0];
     cellModel.samplingRate = samplingRate;
 }
 
@@ -139,7 +185,7 @@ MKBXTAccelerationParamsCellDelegate>
 /// @param threshold threshold
 - (void)bxt_accelerationMotionThresholdChanged:(NSString *)threshold {
     self.dataModel.threshold = threshold;
-    MKBXTAccelerationParamsCellModel *cellModel = self.dataList[0];
+    MKBXTAccelerationParamsCellModel *cellModel = self.section0List[0];
     cellModel.threshold = threshold;
 }
 
@@ -170,13 +216,29 @@ MKBXTAccelerationParamsCellDelegate>
 
 #pragma mark - 列表加载
 - (void)loadSectionDatas {
+    [self loadSection0Datas];
+    [self loadSection1Datas];
+    
+    for (NSInteger i = 0; i < 2; i ++) {
+        MKTableSectionLineHeaderModel *headerModel = [[MKTableSectionLineHeaderModel alloc] init];
+        [self.headerList addObject:headerModel];
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)loadSection0Datas {
     MKBXTAccelerationParamsCellModel *cellModel = [[MKBXTAccelerationParamsCellModel alloc] init];
     cellModel.scale = self.dataModel.scale;
     cellModel.samplingRate = self.dataModel.samplingRate;
     cellModel.threshold = self.dataModel.threshold;
-    [self.dataList addObject:cellModel];
-    
-    [self.tableView reloadData];
+    [self.section0List addObject:cellModel];
+}
+
+- (void)loadSection1Datas {
+    MKSettingTextCellModel *cellModel = [[MKSettingTextCellModel alloc] init];
+    cellModel.leftMsg = @"Static heartbeat";
+    [self.section1List addObject:cellModel];
 }
 
 #pragma mark - UI
@@ -214,11 +276,25 @@ MKBXTAccelerationParamsCellDelegate>
     return _headerView;
 }
 
-- (NSMutableArray *)dataList {
-    if (!_dataList) {
-        _dataList = [NSMutableArray array];
+- (NSMutableArray *)section0List {
+    if (!_section0List) {
+        _section0List = [NSMutableArray array];
     }
-    return _dataList;
+    return _section0List;
+}
+
+- (NSMutableArray *)section1List {
+    if (!_section1List) {
+        _section1List = [NSMutableArray array];
+    }
+    return _section1List;
+}
+
+- (NSMutableArray *)headerList {
+    if (!_headerList) {
+        _headerList = [NSMutableArray array];
+    }
+    return _headerList;
 }
 
 - (MKBXTAccelerationModel *)dataModel {

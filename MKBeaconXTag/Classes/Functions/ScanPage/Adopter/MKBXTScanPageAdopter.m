@@ -164,6 +164,11 @@ static const char *frameTypeKey = "frameTypeKey";
         MKBXTTagInfoBeacon *tempInfoModel = (MKBXTTagInfoBeacon *)beacon;
         deviceModel.battery = tempInfoModel.battery;
         deviceModel.tagID = tempInfoModel.tagID;
+    }else if (beacon.frameType == MKBXTProductionTestFrameType) {
+        //如果是产测
+        MKBXTProductionTestBeacon *tempModel = (MKBXTProductionTestBeacon *)beacon;
+        deviceModel.battery = tempModel.battery;
+        deviceModel.macAddress = tempModel.macAddress;
     }
     //如果是URL、TLM、UID、iBeacon、温湿度、三轴中的一种，直接加入到deviceModel中的数据帧数组里面
     NSObject *obj = [self parseBeaconDatas:beacon];
@@ -196,6 +201,11 @@ static const char *frameTypeKey = "frameTypeKey";
         exsitModel.battery = tempInfoModel.battery;
         exsitModel.tagID = tempInfoModel.tagID;
         exsitModel.deviceName = tempInfoModel.deviceName;
+    }else if (beacon.frameType == MKBXTProductionTestFrameType) {
+        //如果是产测
+        MKBXTProductionTestBeacon *tempModel = (MKBXTProductionTestBeacon *)beacon;
+        exsitModel.battery = tempModel.battery;
+        exsitModel.macAddress = tempModel.macAddress;
     }
     
     //如果是URL、TLM、UID、iBeacon的一种，

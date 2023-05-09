@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *battery;
 
+@property (nonatomic, copy)NSString *macAddress;
+
 @property (nonatomic, copy)NSString *tagID;
 
 /// 用于记录本次扫到该设备距离上次扫到该设备的时间差，单位ms.

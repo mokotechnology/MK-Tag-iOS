@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  MKBXTUIDBeacon:                 UID广播帧(对应的dataModel是MKBXScanUIDCellModel类型)
  MKBXTURLBeacon:                 URL广播帧(对应的dataModel是MKBXScanURLCellModel类型)
  MKBXTTagInfoBeacon:             Tag广播帧(对应的dataModel是MKBXTScanTagInfoCellModel类型)
+ 
  如果不是其中的一种，则返回nil
  */
 /// @param beacon 扫描到的beacon数据

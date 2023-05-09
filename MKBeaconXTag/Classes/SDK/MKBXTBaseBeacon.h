@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  - MKBXTTLMFrameType: TLM
  - MKBXTTagInfoFrameType: Tag information
  - MKBXTBeaconFrameType: iBeacon
+ -MKBXTProductionTestFrameType Production Test iBeacon
  - MKBXTNODATAFrameType: NO DATA
  - MKBXTUnkonwFrameType: Unknown
  */
@@ -27,6 +28,7 @@ typedef NS_ENUM(NSInteger, MKBXTDataFrameType) {
     MKBXTTLMFrameType,
     MKBXTTagInfoFrameType,
     MKBXTBeaconFrameType,
+    MKBXTProductionTestFrameType,
     MKBXTNODATAFrameType,
     MKBXTUnknownFrameType,
 };
@@ -150,6 +152,16 @@ typedef NS_ENUM(NSInteger, MKBXTDataFrameType) {
 @property (nonatomic, copy)NSString *uuid;
 
 - (MKBXTiBeacon *)initWithAdvertiseData:(NSData *)advData;
+
+@end
+
+@interface MKBXTProductionTestBeacon : MKBXTBaseBeacon
+
+/// mV
+@property (nonatomic, copy)NSString *battery;
+@property (nonatomic, copy)NSString *macAddress;
+
+- (MKBXTProductionTestBeacon *)initWithAdvertiseData:(NSData *)advData;
 
 @end
 

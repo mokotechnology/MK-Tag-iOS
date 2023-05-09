@@ -22,12 +22,15 @@ typedef NS_ENUM(NSInteger, mk_bxt_taskOperationID) {
     mk_bxt_taskReadSlotTriggerParamsOperation,  //读取通道触发参数
     mk_bxt_taskReadConnectableOperation,        //读取可连接性
     mk_bxt_taskReadPowerOffByHallSensorOperation,   //读取霍尔开关机状态
+    mk_bxt_taskReadScanResponsePacketOperation,     //读取回应包开关状态
     mk_bxt_taskReadSlotDataTypeOperation,           //读取全部通道类型
     mk_bxt_taskReadTriggerLEDIndicatorStatusOperation,  //读取触发led提醒状态
     mk_bxt_taskReadBatteryVoltageOperation,     //读取电池电压
     mk_bxt_taskReadMotionTriggerCountOperation,    //读取移动触发次数
     mk_bxt_taskReadHallTriggerCountOperation,       //读取霍尔传感器触发次数
     mk_bxt_taskReadSensorStatusOperation,           //读取传感器类型
+    mk_bxt_taskReadStaticHeartbeatOperation,        //读取心跳功能参数
+    mk_bxt_taskReadBatteryModeOperation,            //读取电池类型
     
 #pragma mark - 密码特征
     mk_bxt_taskReadNeedPasswordOperation,       //读取设备是否需要连接密码
@@ -44,9 +47,13 @@ typedef NS_ENUM(NSInteger, mk_bxt_taskOperationID) {
     mk_bxt_taskPowerOffOperation,               //关机
     mk_bxt_taskFactoryResetOperation,           //恢复出厂设置
     mk_bxt_taskConfigPowerOffByHallSensorOperation,         //配置霍尔传感器开关状态
+    mk_bxt_taskConfigScanResponsePacketOperation,           //配置回应包开关状态
     mk_bxt_taskConfigTriggerLEDIndicatorStatusOperation,    //配置触发led提醒状态
     mk_bxt_taskClearMotionTriggerCountOperation,        //清除移动触发次数
     mk_bxt_taskClearHallTriggerCountOperation,          //清除霍尔传感器触发次数
+    mk_bxt_taskConfigRemoteReminderLEDNotiParamsOperation,  //远程提醒
+    mk_bxt_taskConfigStaticHeartbeatOperation,          //配置心跳功能参数
+    mk_bxt_taskResetBatteryOperation,                   //重置设备电量
     
 #pragma mark - 密码相关
     mk_bxt_connectPasswordOperation,            //连接密码

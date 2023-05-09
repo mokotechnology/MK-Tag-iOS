@@ -184,6 +184,14 @@ NS_ASSUME_NONNULL_BEGIN
                               sucBlock:(void (^)(void))sucBlock
                            failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Scan response packet.
+/// @param isOn isOn
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_configScanResponsePacket:(BOOL)isOn
+                            sucBlock:(void (^)(void))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock;
+
 /// Configure the trigger LED indicator light reminder status.
 /// @param isOn isOn
 /// @param sucBlock Success callback
@@ -203,6 +211,34 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param failedBlock Failure callback
 + (void)bxt_clearHallTriggerCountWithSucBlock:(void (^)(void))sucBlock
                                   failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Remote LED reminder parameters.
+/// @param blinkingTime Blinking time.1s ~ 600s(Unit:100ms)
+/// @param blinkingInterval Blinking interval.1 ~ 100(Unit:100ms)
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_configRemoteReminderLEDNotiParams:(NSInteger)blinkingTime
+                             blinkingInterval:(NSInteger)blinkingInterval
+                                     sucBlock:(void (^)(void))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Static heartbeat params.
+/// @param isOn isOn.
+/// @param cycleTime Static cycle time.(1 Min ~ 65535 Mins.)
+/// @param advDuration Adv duration.(1s ~ 65535s.)
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_configStaticHeartbeat:(BOOL)isOn
+                        cycleTime:(NSInteger)cycleTime
+                      advDuration:(NSInteger)advDuration
+                         sucBlock:(void (^)(void))sucBlock
+                      failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Battery Reset.
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_resetBatteryWithSucBlock:(void (^)(void))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock;
 
 #pragma mark - AA07 密码相关
 

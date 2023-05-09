@@ -230,7 +230,8 @@ static dispatch_once_t onceToken;
 - (void)startScan {
     [[MKBLEBaseCentralManager shared] scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:@"FEAA"],
                                                                        [CBUUID UUIDWithString:@"FEAB"],
-                                                                       [CBUUID UUIDWithString:@"EA01"]]
+                                                                       [CBUUID UUIDWithString:@"EA01"],
+                                                                       [CBUUID UUIDWithString:@"EB01"]]
                                                              options:nil];
 }
 

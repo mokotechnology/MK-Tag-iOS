@@ -208,6 +208,13 @@
         resultDic = @{
             @"isOn":@(isOn)
         };
+    }else if ([cmd isEqualToString:@"2f"]) {
+        //读取回应包开关
+        operationID = mk_bxt_taskReadScanResponsePacketOperation;
+        BOOL isOn = [content isEqualToString:@"01"];
+        resultDic = @{
+            @"isOn":@(isOn)
+        };
     }else if ([cmd isEqualToString:@"31"]) {
         //读取全部通道类型
         operationID = mk_bxt_taskReadSlotDataTypeOperation;
@@ -258,6 +265,24 @@
             @"threeAxisAccelerometer":@(threeAxisAccelerometer),
             @"htSensor":@(htSensor),
         };
+    }else if ([cmd isEqualToString:@"5a"]) {
+        //读取心跳功能参数
+        operationID = mk_bxt_taskReadStaticHeartbeatOperation;
+        BOOL isOn = [[content substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"01"];
+        NSString *cycleTime = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(2, 4)];
+        NSString *advDuration = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(6, 4)];
+        resultDic = @{
+            @"isOn":@(isOn),
+            @"cycleTime":cycleTime,
+            @"advDuration":advDuration
+        };
+    }else if ([cmd isEqualToString:@"5d"]) {
+        //读取电池模式
+        operationID = mk_bxt_taskReadBatteryModeOperation;
+        NSString *mode = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, content.length)];
+        resultDic = @{
+            @"mode":mode,
+        };
     }
     
     return [self dataParserGetDataSuccess:resultDic operationID:operationID];
@@ -293,6 +318,9 @@
     }else if ([cmd isEqualToString:@"29"]) {
         //配置霍尔传感器开关机状态
         operationID = mk_bxt_taskConfigPowerOffByHallSensorOperation;
+    }else if ([cmd isEqualToString:@"2f"]) {
+        //配置回应包开关状态
+        operationID = mk_bxt_taskConfigScanResponsePacketOperation;
     }else if ([cmd isEqualToString:@"32"]) {
         //配置触发led提醒状态
         operationID = mk_bxt_taskConfigTriggerLEDIndicatorStatusOperation;
@@ -302,6 +330,15 @@
     }else if ([cmd isEqualToString:@"4e"]) {
         //清除霍尔传感器触发次数
         operationID = mk_bxt_taskClearHallTriggerCountOperation;
+    }else if ([cmd isEqualToString:@"59"]) {
+        //远程提醒
+        operationID = mk_bxt_taskConfigRemoteReminderLEDNotiParamsOperation;
+    }else if ([cmd isEqualToString:@"5a"]) {
+        //配置心跳功能参数
+        operationID = mk_bxt_taskConfigStaticHeartbeatOperation;
+    }else if ([cmd isEqualToString:@"5e"]) {
+        //重置设备电量
+        operationID = mk_bxt_taskResetBatteryOperation;
     }
     
     return [self dataParserGetDataSuccess:@{@"success":@(success)} operationID:operationID];

@@ -291,6 +291,16 @@
                    failedBlock:failedBlock];
 }
 
++ (void)bxt_configScanResponsePacket:(BOOL)isOn
+                            sucBlock:(void (^)(void))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = (isOn ? @"ea012f0101" : @"ea012f0100");
+    [self configDataWithTaskID:mk_bxt_taskConfigScanResponsePacketOperation
+                          data:commandString
+                      sucBlock:sucBlock
+                   failedBlock:failedBlock];
+}
+
 + (void)bxt_configTriggerLEDIndicatorStatus:(BOOL)isOn
                                    sucBlock:(void (^)(void))sucBlock
                                 failedBlock:(void (^)(NSError *error))failedBlock {
@@ -314,6 +324,50 @@
                                   failedBlock:(void (^)(NSError *error))failedBlock {
     NSString *commandString = @"ea014e00";
     [self configDataWithTaskID:mk_bxt_taskClearHallTriggerCountOperation
+                          data:commandString
+                      sucBlock:sucBlock
+                   failedBlock:failedBlock];
+}
+
++ (void)bxt_configRemoteReminderLEDNotiParams:(NSInteger)blinkingTime
+                             blinkingInterval:(NSInteger)blinkingInterval
+                                     sucBlock:(void (^)(void))sucBlock
+                                  failedBlock:(void (^)(NSError *error))failedBlock {
+    if (blinkingTime < 1 || blinkingTime > 600 || blinkingInterval < 1 || blinkingInterval > 100) {
+        [MKBLEBaseSDKAdopter operationParamsErrorBlock:failedBlock];
+        return;
+    }
+    NSString *time = [MKBLEBaseSDKAdopter fetchHexValue:blinkingTime byteLen:2];
+    NSString *interval = [MKBLEBaseSDKAdopter fetchHexValue:(blinkingInterval * 100) byteLen:2];
+    NSString *commandString = [NSString stringWithFormat:@"%@%@%@",@"ea01590503",interval,time];
+    [self configDataWithTaskID:mk_bxt_taskConfigRemoteReminderLEDNotiParamsOperation
+                          data:commandString
+                      sucBlock:sucBlock
+                   failedBlock:failedBlock];
+}
+
++ (void)bxt_configStaticHeartbeat:(BOOL)isOn
+                        cycleTime:(NSInteger)cycleTime
+                      advDuration:(NSInteger)advDuration
+                         sucBlock:(void (^)(void))sucBlock
+                      failedBlock:(void (^)(NSError *error))failedBlock {
+    if (cycleTime < 1 || cycleTime > 65535 || advDuration < 1 || advDuration > 65535) {
+        [MKBLEBaseSDKAdopter operationParamsErrorBlock:failedBlock];
+        return;
+    }
+    NSString *cycleHex = [MKBLEBaseSDKAdopter fetchHexValue:cycleTime byteLen:2];
+    NSString *durationHex = [MKBLEBaseSDKAdopter fetchHexValue:advDuration byteLen:2];
+    NSString *commandString = [NSString stringWithFormat:@"%@%@%@%@",@"ea015a05",(isOn ? @"01" : @"00"),cycleHex,durationHex];
+    [self configDataWithTaskID:mk_bxt_taskConfigStaticHeartbeatOperation
+                          data:commandString
+                      sucBlock:sucBlock
+                   failedBlock:failedBlock];
+}
+
++ (void)bxt_resetBatteryWithSucBlock:(void (^)(void))sucBlock
+                         failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *commandString = @"ea015e0101";
+    [self configDataWithTaskID:mk_bxt_taskResetBatteryOperation
                           data:commandString
                       sucBlock:sucBlock
                    failedBlock:failedBlock];

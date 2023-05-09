@@ -38,6 +38,13 @@
             [self operationFailedBlockWithMsg:@"Read Password verification Error" block:failedBlock];
             return;
         }
+        if ([MKBXTConnectManager shared].supportHeartbeat) {
+            if (![self readScanRespons]) {
+                [self operationFailedBlockWithMsg:@"Read Scan Respons Error" block:failedBlock];
+                return;
+            }
+        }
+        
         moko_dispatch_main_safe(^{
             if (sucBlock) {
                 sucBlock();
@@ -78,6 +85,19 @@
     [MKBXTInterface bxt_readPasswordVerificationWithSucBlock:^(id  _Nonnull returnData) {
         success = YES;
         self.passwordVerification = [returnData[@"result"][@"isOn"] boolValue];
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)readScanRespons {
+    __block BOOL success = NO;
+    [MKBXTInterface bxt_readScanResponsePacketWithSucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        self.scanResponse = [returnData[@"result"][@"isOn"] boolValue];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);

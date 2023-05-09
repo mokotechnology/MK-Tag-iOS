@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)BOOL passwordVerification;
 
+/// V1.0.4以后支持
+@property (nonatomic, assign)BOOL scanResponse;
+
 
 - (void)readWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock;
 

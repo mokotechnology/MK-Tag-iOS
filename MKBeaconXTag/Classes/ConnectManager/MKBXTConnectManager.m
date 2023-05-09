@@ -57,6 +57,10 @@
             [self operationFailedMsg:dic[@"msg"] completeBlock:failedBlock];
             return ;
         }
+        if (![self readFirmware]) {
+            [self operationFailedMsg:@"Read Firmware Version Failed" completeBlock:failedBlock];
+            return;
+        }
         if (![self configDate]) {
             [self operationFailedMsg:@"Sync Time Failed" completeBlock:failedBlock];
             return;
@@ -106,18 +110,21 @@
     return connectResult;
 }
 
-- (BOOL)readDeviceType {
-    return YES;
-//    __block BOOL success = NO;
-//    [MKBXTInterface bxt_readDeviceTypeWithSucBlock:^(id  _Nonnull returnData) {
-//        success = YES;
-//        self.deviceType = returnData[@"result"][@"deviceType"];
-//        dispatch_semaphore_signal(self.semaphore);
-//    } failedBlock:^(NSError * _Nonnull error) {
-//        dispatch_semaphore_signal(self.semaphore);
-//    }];
-//    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
-//    return success;
+- (BOOL)readFirmware {
+    __block BOOL success = NO;
+    [MKBXTInterface bxt_readFirmwareWithSucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        self.firmwareVersion = returnData[@"result"][@"firmware"];
+        NSString *tempVersion = [self.firmwareVersion stringByReplacingOccurrencesOfString:@"V" withString:@""];
+        tempVersion = [tempVersion stringByReplacingOccurrencesOfString:@" " withString:@""];
+        tempVersion = [tempVersion stringByReplacingOccurrencesOfString:@"." withString:@""];
+        self.supportHeartbeat = ([tempVersion integerValue] >= 104);
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
 }
 
 - (BOOL)configDate {

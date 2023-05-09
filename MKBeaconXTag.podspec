@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MKBeaconXTag'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'A short description of MKBeaconXTag.'
 
 # This description is used to generate tags and improve search results.
@@ -77,6 +77,8 @@ TODO: Add long description of the pod here.
       
         ssss.dependency 'MKBeaconXTag/Functions/AccelerationPage/Model'
         ssss.dependency 'MKBeaconXTag/Functions/AccelerationPage/View'
+        
+        ssss.dependency 'MKBeaconXTag/Functions/StaticHeartbeatPage/Controller'
       
       end
     
@@ -130,6 +132,23 @@ TODO: Add long description of the pod here.
       end
     end
     
+    ss.subspec 'RemoteReminderPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKBeaconXTag/Classes/Functions/RemoteReminderPage/Controller/**'
+      
+        ssss.dependency 'MKBeaconXTag/Functions/RemoteReminderPage/Model'
+        ssss.dependency 'MKBeaconXTag/Functions/RemoteReminderPage/View'
+      end
+    
+      sss.subspec 'Model' do |ssss|
+        ssss.source_files = 'MKBeaconXTag/Classes/Functions/RemoteReminderPage/Model/**'
+      end
+      
+      sss.subspec 'View' do |ssss|
+        ssss.source_files = 'MKBeaconXTag/Classes/Functions/RemoteReminderPage/View/**'
+      end
+    end
+    
     ss.subspec 'ScanPage' do |sss|
       sss.subspec 'Controller' do |ssss|
         ssss.source_files = 'MKBeaconXTag/Classes/Functions/ScanPage/Controller/**'
@@ -176,6 +195,8 @@ TODO: Add long description of the pod here.
         ssss.dependency 'MKBeaconXTag/Functions/SensorConfigPage/Controller'
         ssss.dependency 'MKBeaconXTag/Functions/QuickSwitchPage/Controller'
         ssss.dependency 'MKBeaconXTag/Functions/UpdatePage/Controller'
+        ssss.dependency 'MKBeaconXTag/Functions/RemoteReminderPage/Controller'
+        
       end
     end
     
@@ -222,6 +243,19 @@ TODO: Add long description of the pod here.
     
       sss.subspec 'Model' do |ssss|
         ssss.source_files = 'MKBeaconXTag/Classes/Functions/SlotPage/Model/**'
+      end
+    end
+    
+    ss.subspec 'StaticHeartbeatPage' do |sss|
+      sss.subspec 'Controller' do |ssss|
+        ssss.source_files = 'MKBeaconXTag/Classes/Functions/StaticHeartbeatPage/Controller/**'
+      
+        ssss.dependency 'MKBeaconXTag/Functions/StaticHeartbeatPage/Model'
+        
+      end
+    
+      sss.subspec 'Model' do |ssss|
+        ssss.source_files = 'MKBeaconXTag/Classes/Functions/StaticHeartbeatPage/Model/**'
       end
     end
     

@@ -1,6 +1,6 @@
 {
   "name": "MKBeaconXTag",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "summary": "A short description of MKBeaconXTag.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/aadyx2007@163.com/MKBeaconXTag",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/aadyx2007@163.com/MKBeaconXTag.git",
-    "tag": "0.0.1"
+    "tag": "0.0.2"
   },
   "platforms": {
     "ios": "12.0"
@@ -116,6 +116,9 @@
                 ],
                 "MKBeaconXTag/Functions/AccelerationPage/View": [
 
+                ],
+                "MKBeaconXTag/Functions/StaticHeartbeatPage/Controller": [
+
                 ]
               }
             },
@@ -187,6 +190,31 @@
             {
               "name": "Model",
               "source_files": "MKBeaconXTag/Classes/Functions/QuickSwitchPage/Model/**"
+            }
+          ]
+        },
+        {
+          "name": "RemoteReminderPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/RemoteReminderPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/RemoteReminderPage/Model": [
+
+                ],
+                "MKBeaconXTag/Functions/RemoteReminderPage/View": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/RemoteReminderPage/Model/**"
+            },
+            {
+              "name": "View",
+              "source_files": "MKBeaconXTag/Classes/Functions/RemoteReminderPage/View/**"
             }
           ]
         },
@@ -273,6 +301,9 @@
                 ],
                 "MKBeaconXTag/Functions/UpdatePage/Controller": [
 
+                ],
+                "MKBeaconXTag/Functions/RemoteReminderPage/Controller": [
+
                 ]
               }
             }
@@ -348,6 +379,24 @@
             {
               "name": "Model",
               "source_files": "MKBeaconXTag/Classes/Functions/SlotPage/Model/**"
+            }
+          ]
+        },
+        {
+          "name": "StaticHeartbeatPage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKBeaconXTag/Classes/Functions/StaticHeartbeatPage/Controller/**",
+              "dependencies": {
+                "MKBeaconXTag/Functions/StaticHeartbeatPage/Model": [
+
+                ]
+              }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/StaticHeartbeatPage/Model/**"
             }
           ]
         },

@@ -56,6 +56,15 @@
                     [beaconList addObject:beacon];
                 }
             }
+        }else if ([key isEqual:[CBUUID UUIDWithString:@"EB01"]]) {
+            NSData *febData = advDic[[CBUUID UUIDWithString:@"EB01"]];
+            if (MKValidData(febData)) {
+                MKBXTDataFrameType frameType = [self fetchEB01FrameType:febData];
+                MKBXTBaseBeacon *beacon = [self fetchBaseBeaconWithFrameType:frameType advData:febData];
+                if (beacon) {
+                    [beaconList addObject:beacon];
+                }
+            }
         }
     }
     return beaconList;
@@ -82,6 +91,10 @@
             break;
         case MKBXTBeaconFrameType:
             beacon = [[MKBXTiBeacon alloc] initWithAdvertiseData:advData];
+            beacon.advertiseData = advData;
+            break;
+        case MKBXTProductionTestFrameType:
+            beacon = [[MKBXTProductionTestBeacon alloc] initWithAdvertiseData:advData];
             beacon.advertiseData = advData;
             break;
         default:
@@ -156,6 +169,19 @@
     switch (*cData) {
         case 0x80:
             return MKBXTTagInfoFrameType;
+        default:
+            return MKBXTUnknownFrameType;
+    }
+}
+
++ (MKBXTDataFrameType)fetchEB01FrameType:(NSData *)customData {
+    if (!MKValidData(customData) || customData.length == 0) {
+        return MKBXTUnknownFrameType;
+    }
+    const unsigned char *cData = [customData bytes];
+    switch (*cData) {
+        case 0x90:
+            return MKBXTProductionTestFrameType;
         default:
             return MKBXTUnknownFrameType;
     }
@@ -349,3 +375,26 @@
 
 @end
 
+
+@implementation MKBXTProductionTestBeacon
+
+- (MKBXTProductionTestBeacon *)initWithAdvertiseData:(NSData *)advData {
+    if (self = [super init]) {
+        NSAssert1(!(advData.length < 8), @"Invalid advertiseData:%@", advData);
+
+        NSString *content = [MKBLEBaseSDKAdopter hexStringFromData:advData];
+        self.battery = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(2, 4)];
+        NSString *tempMac = [[content substringWithRange:NSMakeRange(6, 12)] uppercaseString];
+        NSString *macAddress = [NSString stringWithFormat:@"%@:%@:%@:%@:%@:%@",
+        [tempMac substringWithRange:NSMakeRange(0, 2)],
+        [tempMac substringWithRange:NSMakeRange(2, 2)],
+        [tempMac substringWithRange:NSMakeRange(4, 2)],
+        [tempMac substringWithRange:NSMakeRange(6, 2)],
+        [tempMac substringWithRange:NSMakeRange(8, 2)],
+        [tempMac substringWithRange:NSMakeRange(10, 2)]];
+        self.macAddress = macAddress;
+    }
+    return self;
+}
+
+@end

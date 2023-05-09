@@ -27,6 +27,7 @@
 #import "MKBXTSensorConfigController.h"
 #import "MKBXTQuickSwitchController.h"
 #import "MKBXTUpdateController.h"
+#import "MKBXTRemoteReminderController.h"
 
 @interface MKBXTSettingController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -38,11 +39,17 @@
 
 @property (nonatomic, strong)NSMutableArray *section2List;
 
+@property (nonatomic, strong)NSMutableArray *section3List;
+
+@property (nonatomic, strong)NSMutableArray *section4List;
+
 @property (nonatomic, assign)BOOL dfuModule;
 
 @property (nonatomic, copy)NSString *passwordAsciiStr;
 
 @property (nonatomic, copy)NSString *confirmAsciiStr;
+
+@property (nonatomic, assign)BOOL supportBatteryReset;
 
 @end
 
@@ -64,8 +71,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadSubViews];
-    [self loadSection0Datas];
-    [self loadSection2Datas];
+    [self readDatas];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deviceStartDFUProcess)
                                                  name:@"mk_bxt_startDfuProcessNotification"
@@ -91,6 +97,10 @@
         cellModel = self.section1List[indexPath.row];
     }else if (indexPath.section == 2) {
         cellModel = self.section2List[indexPath.row];
+    }else if (indexPath.section == 3) {
+        cellModel = self.section3List[indexPath.row];
+    }else if (indexPath.section == 4) {
+        cellModel = self.section4List[indexPath.row];
     }
     if (ValidStr(cellModel.methodName) && [self respondsToSelector:NSSelectorFromString(cellModel.methodName)]) {
         [self performSelector:NSSelectorFromString(cellModel.methodName) withObject:nil];
@@ -99,7 +109,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -111,6 +121,12 @@
     }
     if (section == 2) {
         return self.section2List.count;
+    }
+    if (section == 3) {
+        return ([MKBXTConnectManager shared].supportHeartbeat ? self.section3List.count : 0);
+    }
+    if (section == 4) {
+        return (self.supportBatteryReset ? self.section4List.count : 0);
     }
     return 0;
 }
@@ -126,14 +142,52 @@
         cell.dataModel = self.section1List[indexPath.row];
         return cell;
     }
+    if (indexPath.section == 2) {
+        MKNormalTextCell *cell = [MKNormalTextCell initCellWithTableView:tableView];
+        cell.dataModel = self.section2List[indexPath.row];
+        return cell;
+    }
+    if (indexPath.section == 3) {
+        MKNormalTextCell *cell = [MKNormalTextCell initCellWithTableView:tableView];
+        cell.dataModel = self.section3List[indexPath.row];
+        return cell;
+    }
     MKNormalTextCell *cell = [MKNormalTextCell initCellWithTableView:tableView];
-    cell.dataModel = self.section2List[indexPath.row];
+    cell.dataModel = self.section4List[indexPath.row];
     return cell;
 }
 
 #pragma mark - note
 - (void)deviceStartDFUProcess {
     self.dfuModule = YES;
+}
+
+#pragma mark - interface
+- (void)readDatas {
+    if (![MKBXTConnectManager shared].supportHeartbeat) {
+        //旧版本
+        [self loadSection0Datas];
+        [self loadSection2Datas];
+        [self loadSection3Datas];
+        [self loadSection4Datas];
+        
+        [self.tableView reloadData];
+        return;
+    }
+    [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
+    [MKBXTInterface bxt_readBatteryModeWithSucBlock:^(id  _Nonnull returnData) {
+        [[MKHudManager share] hide];
+        self.supportBatteryReset = ([returnData[@"result"][@"mode"] integerValue] == 1);
+        [self loadSection0Datas];
+        [self loadSection2Datas];
+        [self loadSection3Datas];
+        [self loadSection4Datas];
+        
+        [self.tableView reloadData];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
 }
 
 #pragma mark - section0
@@ -328,6 +382,58 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - section3
+- (void)loadSection3Datas {
+    MKNormalTextCellModel *dfuModel = [[MKNormalTextCellModel alloc] init];
+    dfuModel.leftMsg = @"Remote reminder";
+    dfuModel.showRightIcon = YES;
+    dfuModel.methodName = @"pushRemoteReminder";
+    [self.section3List addObject:dfuModel];
+}
+
+- (void)pushRemoteReminder {
+    MKBXTRemoteReminderController *vc = [[MKBXTRemoteReminderController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - section4
+- (void)loadSection4Datas {
+    MKNormalTextCellModel *dfuModel = [[MKNormalTextCellModel alloc] init];
+    dfuModel.leftMsg = @"Reset Battery";
+    dfuModel.showRightIcon = YES;
+    dfuModel.methodName = @"resetBattery";
+    [self.section4List addObject:dfuModel];
+}
+
+- (void)resetBattery{
+    @weakify(self);
+    MKAlertViewAction *cancelAction = [[MKAlertViewAction alloc] initWithTitle:@"Cancel" handler:^{
+    }];
+    
+    MKAlertViewAction *confirmAction = [[MKAlertViewAction alloc] initWithTitle:@"OK" handler:^{
+        @strongify(self);
+        [self sendBatteryResetToDevice];
+    }];
+    NSString *msg = @"*Please ensure you have replaced the new battery for this beacon before reset the Battery";
+    MKAlertView *alertView = [[MKAlertView alloc] init];
+    [alertView addAction:cancelAction];
+    [alertView addAction:confirmAction];
+    [alertView showAlertWithTitle:@"Warning!" message:msg notificationName:@"mk_bxt_needDismissAlert"];
+}
+
+- (void)sendBatteryResetToDevice {
+    [[MKHudManager share] showHUDWithTitle:@"Setting..."
+                                     inView:self.view
+                              isPenetration:NO];
+    [MKBXTInterface bxt_resetBatteryWithSucBlock:^ {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:@"Reset battery success!"];
+    } failedBlock:^(NSError *error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+    }];
+}
+
 #pragma mark - UI
 
 - (void)loadSubViews {
@@ -371,6 +477,20 @@
         _section2List = [NSMutableArray array];
     }
     return _section2List;
+}
+
+- (NSMutableArray *)section3List {
+    if (!_section3List) {
+        _section3List = [NSMutableArray array];
+    }
+    return _section3List;
+}
+
+- (NSMutableArray *)section4List {
+    if (!_section4List) {
+        _section4List = [NSMutableArray array];
+    }
+    return _section4List;
 }
 
 @end

@@ -89,6 +89,11 @@ MKBXQuickSwitchCellDelegate>
         [self configPasswordVerification:isOn];
         return;
     }
+    if (index == 3) {
+        //Scan response packet
+        [self configScanResponsePacket:isOn];
+        return;
+    }
 }
 
 #pragma mark - 设置参数部分
@@ -190,6 +195,24 @@ MKBXQuickSwitchCellDelegate>
     }];
 }
 
+#pragma mark - Scan response packet
+- (void)configScanResponsePacket:(BOOL)isOn {
+    [[MKHudManager share] showHUDWithTitle:@"Setting..."
+                                     inView:self.view
+                              isPenetration:NO];
+    [MKBXTInterface bxt_configScanResponsePacket:isOn sucBlock:^{
+        [[MKHudManager share] hide];
+        self.dataModel.scanResponse = isOn;
+        MKBXQuickSwitchCellModel *cellModel = self.dataList[3];
+        cellModel.isOn = isOn;
+        [self.view showCentralToast:@"Success!"];
+    } failedBlock:^(NSError * _Nonnull error) {
+        [[MKHudManager share] hide];
+        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
+        [self.collectionView reloadData];
+    }];
+}
+
 #pragma mark - 读取数据
 - (void)readDataFromDevice {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
@@ -224,6 +247,14 @@ MKBXQuickSwitchCellDelegate>
     cellModel3.titleMsg = @"Password verification";
     cellModel3.isOn = self.dataModel.passwordVerification;
     [self.dataList addObject:cellModel3];
+    
+    if ([MKBXTConnectManager shared].supportHeartbeat) {
+        MKBXQuickSwitchCellModel *cellModel4 = [[MKBXQuickSwitchCellModel alloc] init];
+        cellModel4.index = 3;
+        cellModel4.titleMsg = @"Scan response packet";
+        cellModel4.isOn = self.dataModel.scanResponse;
+        [self.dataList addObject:cellModel4];
+    }
         
     [self.collectionView reloadData];
 }

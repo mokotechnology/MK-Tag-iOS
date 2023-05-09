@@ -203,50 +203,52 @@ PODS:
     - MKBaseModuleLibrary
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag (0.0.1):
-    - MKBeaconXTag/ConnectManager (= 0.0.1)
-    - MKBeaconXTag/CTMediator (= 0.0.1)
-    - MKBeaconXTag/Functions (= 0.0.1)
-    - MKBeaconXTag/SDK (= 0.0.1)
-    - MKBeaconXTag/Target (= 0.0.1)
-  - MKBeaconXTag/ConnectManager (0.0.1):
+  - MKBeaconXTag (0.0.2):
+    - MKBeaconXTag/ConnectManager (= 0.0.2)
+    - MKBeaconXTag/CTMediator (= 0.0.2)
+    - MKBeaconXTag/Functions (= 0.0.2)
+    - MKBeaconXTag/SDK (= 0.0.2)
+    - MKBeaconXTag/Target (= 0.0.2)
+  - MKBeaconXTag/ConnectManager (0.0.2):
     - MKBaseModuleLibrary
     - MKBeaconXTag/SDK
-  - MKBeaconXTag/CTMediator (0.0.1):
+  - MKBeaconXTag/CTMediator (0.0.2):
     - CTMediator
     - MKBaseModuleLibrary
-  - MKBeaconXTag/Functions (0.0.1):
+  - MKBeaconXTag/Functions (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/AboutPage (= 0.0.1)
-    - MKBeaconXTag/Functions/AccelerationPage (= 0.0.1)
-    - MKBeaconXTag/Functions/DeviceInfoPage (= 0.0.1)
-    - MKBeaconXTag/Functions/HallSensorPage (= 0.0.1)
-    - MKBeaconXTag/Functions/QuickSwitchPage (= 0.0.1)
-    - MKBeaconXTag/Functions/ScanPage (= 0.0.1)
-    - MKBeaconXTag/Functions/SensorConfigPage (= 0.0.1)
-    - MKBeaconXTag/Functions/SettingPage (= 0.0.1)
-    - MKBeaconXTag/Functions/SlotConfigPage (= 0.0.1)
-    - MKBeaconXTag/Functions/SlotPage (= 0.0.1)
-    - MKBeaconXTag/Functions/TabBarPage (= 0.0.1)
-    - MKBeaconXTag/Functions/UpdatePage (= 0.0.1)
+    - MKBeaconXTag/Functions/AboutPage (= 0.0.2)
+    - MKBeaconXTag/Functions/AccelerationPage (= 0.0.2)
+    - MKBeaconXTag/Functions/DeviceInfoPage (= 0.0.2)
+    - MKBeaconXTag/Functions/HallSensorPage (= 0.0.2)
+    - MKBeaconXTag/Functions/QuickSwitchPage (= 0.0.2)
+    - MKBeaconXTag/Functions/RemoteReminderPage (= 0.0.2)
+    - MKBeaconXTag/Functions/ScanPage (= 0.0.2)
+    - MKBeaconXTag/Functions/SensorConfigPage (= 0.0.2)
+    - MKBeaconXTag/Functions/SettingPage (= 0.0.2)
+    - MKBeaconXTag/Functions/SlotConfigPage (= 0.0.2)
+    - MKBeaconXTag/Functions/SlotPage (= 0.0.2)
+    - MKBeaconXTag/Functions/StaticHeartbeatPage (= 0.0.2)
+    - MKBeaconXTag/Functions/TabBarPage (= 0.0.2)
+    - MKBeaconXTag/Functions/UpdatePage (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/AboutPage (0.0.1):
+  - MKBeaconXTag/Functions/AboutPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/AboutPage/Controller (= 0.0.1)
+    - MKBeaconXTag/Functions/AboutPage/Controller (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/AboutPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/AboutPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -255,19 +257,19 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/AccelerationPage (0.0.1):
+  - MKBeaconXTag/Functions/AccelerationPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/AccelerationPage/Controller (= 0.0.1)
-    - MKBeaconXTag/Functions/AccelerationPage/Model (= 0.0.1)
-    - MKBeaconXTag/Functions/AccelerationPage/View (= 0.0.1)
+    - MKBeaconXTag/Functions/AccelerationPage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/AccelerationPage/Model (= 0.0.2)
+    - MKBeaconXTag/Functions/AccelerationPage/View (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/AccelerationPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/AccelerationPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -275,10 +277,11 @@ PODS:
     - MKBeaconXTag/CTMediator
     - MKBeaconXTag/Functions/AccelerationPage/Model
     - MKBeaconXTag/Functions/AccelerationPage/View
+    - MKBeaconXTag/Functions/StaticHeartbeatPage/Controller
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/AccelerationPage/Model (0.0.1):
+  - MKBeaconXTag/Functions/AccelerationPage/Model (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -287,7 +290,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/AccelerationPage/View (0.0.1):
+  - MKBeaconXTag/Functions/AccelerationPage/View (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -296,18 +299,18 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/DeviceInfoPage (0.0.1):
+  - MKBeaconXTag/Functions/DeviceInfoPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/DeviceInfoPage/Controller (= 0.0.1)
-    - MKBeaconXTag/Functions/DeviceInfoPage/Model (= 0.0.1)
+    - MKBeaconXTag/Functions/DeviceInfoPage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/DeviceInfoPage/Model (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/DeviceInfoPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/DeviceInfoPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -317,7 +320,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/DeviceInfoPage/Model (0.0.1):
+  - MKBeaconXTag/Functions/DeviceInfoPage/Model (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -326,19 +329,19 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/HallSensorPage (0.0.1):
+  - MKBeaconXTag/Functions/HallSensorPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/HallSensorPage/Controller (= 0.0.1)
-    - MKBeaconXTag/Functions/HallSensorPage/Model (= 0.0.1)
-    - MKBeaconXTag/Functions/HallSensorPage/View (= 0.0.1)
+    - MKBeaconXTag/Functions/HallSensorPage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/HallSensorPage/Model (= 0.0.2)
+    - MKBeaconXTag/Functions/HallSensorPage/View (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/HallSensorPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/HallSensorPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -349,7 +352,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/HallSensorPage/Model (0.0.1):
+  - MKBeaconXTag/Functions/HallSensorPage/Model (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -358,7 +361,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/HallSensorPage/View (0.0.1):
+  - MKBeaconXTag/Functions/HallSensorPage/View (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -367,18 +370,18 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/QuickSwitchPage (0.0.1):
+  - MKBeaconXTag/Functions/QuickSwitchPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/QuickSwitchPage/Controller (= 0.0.1)
-    - MKBeaconXTag/Functions/QuickSwitchPage/Model (= 0.0.1)
+    - MKBeaconXTag/Functions/QuickSwitchPage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/QuickSwitchPage/Model (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/QuickSwitchPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/QuickSwitchPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -388,7 +391,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/QuickSwitchPage/Model (0.0.1):
+  - MKBeaconXTag/Functions/QuickSwitchPage/Model (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -397,20 +400,61 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/ScanPage (0.0.1):
+  - MKBeaconXTag/Functions/RemoteReminderPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/ScanPage/Adopter (= 0.0.1)
-    - MKBeaconXTag/Functions/ScanPage/Controller (= 0.0.1)
-    - MKBeaconXTag/Functions/ScanPage/Model (= 0.0.1)
-    - MKBeaconXTag/Functions/ScanPage/View (= 0.0.1)
+    - MKBeaconXTag/Functions/RemoteReminderPage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/RemoteReminderPage/Model (= 0.0.2)
+    - MKBeaconXTag/Functions/RemoteReminderPage/View (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/ScanPage/Adopter (0.0.1):
+  - MKBeaconXTag/Functions/RemoteReminderPage/Controller (0.0.2):
+    - HHTransition
+    - MKBaseModuleLibrary
+    - MKBeaconXCustomUI
+    - MKBeaconXTag/ConnectManager
+    - MKBeaconXTag/CTMediator
+    - MKBeaconXTag/Functions/RemoteReminderPage/Model
+    - MKBeaconXTag/Functions/RemoteReminderPage/View
+    - MKBeaconXTag/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKBeaconXTag/Functions/RemoteReminderPage/Model (0.0.2):
+    - HHTransition
+    - MKBaseModuleLibrary
+    - MKBeaconXCustomUI
+    - MKBeaconXTag/ConnectManager
+    - MKBeaconXTag/CTMediator
+    - MKBeaconXTag/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKBeaconXTag/Functions/RemoteReminderPage/View (0.0.2):
+    - HHTransition
+    - MKBaseModuleLibrary
+    - MKBeaconXCustomUI
+    - MKBeaconXTag/ConnectManager
+    - MKBeaconXTag/CTMediator
+    - MKBeaconXTag/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKBeaconXTag/Functions/ScanPage (0.0.2):
+    - HHTransition
+    - MKBaseModuleLibrary
+    - MKBeaconXCustomUI
+    - MKBeaconXTag/ConnectManager
+    - MKBeaconXTag/CTMediator
+    - MKBeaconXTag/Functions/ScanPage/Adopter (= 0.0.2)
+    - MKBeaconXTag/Functions/ScanPage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/ScanPage/Model (= 0.0.2)
+    - MKBeaconXTag/Functions/ScanPage/View (= 0.0.2)
+    - MKBeaconXTag/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKBeaconXTag/Functions/ScanPage/Adopter (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -421,7 +465,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/ScanPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/ScanPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -435,7 +479,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/ScanPage/Model (0.0.1):
+  - MKBeaconXTag/Functions/ScanPage/Model (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -444,7 +488,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/ScanPage/View (0.0.1):
+  - MKBeaconXTag/Functions/ScanPage/View (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -454,17 +498,17 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SensorConfigPage (0.0.1):
+  - MKBeaconXTag/Functions/SensorConfigPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/SensorConfigPage/Controller (= 0.0.1)
+    - MKBeaconXTag/Functions/SensorConfigPage/Controller (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SensorConfigPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/SensorConfigPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -475,43 +519,44 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SettingPage (0.0.1):
+  - MKBeaconXTag/Functions/SettingPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/SettingPage/Controller (= 0.0.1)
+    - MKBeaconXTag/Functions/SettingPage/Controller (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SettingPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/SettingPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
     - MKBeaconXTag/Functions/QuickSwitchPage/Controller
+    - MKBeaconXTag/Functions/RemoteReminderPage/Controller
     - MKBeaconXTag/Functions/SensorConfigPage/Controller
     - MKBeaconXTag/Functions/UpdatePage/Controller
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SlotConfigPage (0.0.1):
+  - MKBeaconXTag/Functions/SlotConfigPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/SlotConfigPage/Adopter (= 0.0.1)
-    - MKBeaconXTag/Functions/SlotConfigPage/Controller (= 0.0.1)
-    - MKBeaconXTag/Functions/SlotConfigPage/Defines (= 0.0.1)
-    - MKBeaconXTag/Functions/SlotConfigPage/Model (= 0.0.1)
-    - MKBeaconXTag/Functions/SlotConfigPage/View (= 0.0.1)
+    - MKBeaconXTag/Functions/SlotConfigPage/Adopter (= 0.0.2)
+    - MKBeaconXTag/Functions/SlotConfigPage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/SlotConfigPage/Defines (= 0.0.2)
+    - MKBeaconXTag/Functions/SlotConfigPage/Model (= 0.0.2)
+    - MKBeaconXTag/Functions/SlotConfigPage/View (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SlotConfigPage/Adopter (0.0.1):
+  - MKBeaconXTag/Functions/SlotConfigPage/Adopter (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -520,7 +565,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SlotConfigPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/SlotConfigPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -533,7 +578,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SlotConfigPage/Defines (0.0.1):
+  - MKBeaconXTag/Functions/SlotConfigPage/Defines (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -542,7 +587,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SlotConfigPage/Model (0.0.1):
+  - MKBeaconXTag/Functions/SlotConfigPage/Model (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -552,7 +597,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SlotConfigPage/View (0.0.1):
+  - MKBeaconXTag/Functions/SlotConfigPage/View (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -563,18 +608,18 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SlotPage (0.0.1):
+  - MKBeaconXTag/Functions/SlotPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/SlotPage/Controller (= 0.0.1)
-    - MKBeaconXTag/Functions/SlotPage/Model (= 0.0.1)
+    - MKBeaconXTag/Functions/SlotPage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/SlotPage/Model (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SlotPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/SlotPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -585,7 +630,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/SlotPage/Model (0.0.1):
+  - MKBeaconXTag/Functions/SlotPage/Model (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -594,17 +639,47 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/TabBarPage (0.0.1):
+  - MKBeaconXTag/Functions/StaticHeartbeatPage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/TabBarPage/Controller (= 0.0.1)
+    - MKBeaconXTag/Functions/StaticHeartbeatPage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/StaticHeartbeatPage/Model (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/TabBarPage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/StaticHeartbeatPage/Controller (0.0.2):
+    - HHTransition
+    - MKBaseModuleLibrary
+    - MKBeaconXCustomUI
+    - MKBeaconXTag/ConnectManager
+    - MKBeaconXTag/CTMediator
+    - MKBeaconXTag/Functions/StaticHeartbeatPage/Model
+    - MKBeaconXTag/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKBeaconXTag/Functions/StaticHeartbeatPage/Model (0.0.2):
+    - HHTransition
+    - MKBaseModuleLibrary
+    - MKBeaconXCustomUI
+    - MKBeaconXTag/ConnectManager
+    - MKBeaconXTag/CTMediator
+    - MKBeaconXTag/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKBeaconXTag/Functions/TabBarPage (0.0.2):
+    - HHTransition
+    - MKBaseModuleLibrary
+    - MKBeaconXCustomUI
+    - MKBeaconXTag/ConnectManager
+    - MKBeaconXTag/CTMediator
+    - MKBeaconXTag/Functions/TabBarPage/Controller (= 0.0.2)
+    - MKBeaconXTag/SDK
+    - MKCustomUIModule
+    - MLInputDodger
+  - MKBeaconXTag/Functions/TabBarPage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -616,18 +691,18 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/UpdatePage (0.0.1):
+  - MKBeaconXTag/Functions/UpdatePage (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
     - MKBeaconXTag/ConnectManager
     - MKBeaconXTag/CTMediator
-    - MKBeaconXTag/Functions/UpdatePage/Controller (= 0.0.1)
-    - MKBeaconXTag/Functions/UpdatePage/Model (= 0.0.1)
+    - MKBeaconXTag/Functions/UpdatePage/Controller (= 0.0.2)
+    - MKBeaconXTag/Functions/UpdatePage/Model (= 0.0.2)
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/UpdatePage/Controller (0.0.1):
+  - MKBeaconXTag/Functions/UpdatePage/Controller (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -637,7 +712,7 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/Functions/UpdatePage/Model (0.0.1):
+  - MKBeaconXTag/Functions/UpdatePage/Model (0.0.2):
     - HHTransition
     - MKBaseModuleLibrary
     - MKBeaconXCustomUI
@@ -646,9 +721,9 @@ PODS:
     - MKBeaconXTag/SDK
     - MKCustomUIModule
     - MLInputDodger
-  - MKBeaconXTag/SDK (0.0.1):
+  - MKBeaconXTag/SDK (0.0.2):
     - MKBaseBleModule
-  - MKBeaconXTag/Target (0.0.1):
+  - MKBeaconXTag/Target (0.0.2):
     - MKBeaconXTag/Functions
   - MKCustomUIModule (1.4.4):
     - CircleProgressBar
@@ -1071,7 +1146,7 @@ SPEC CHECKSUMS:
   MKBaseBleModule: 15aa067c4e408a473e025b1a768ebce00a7e5949
   MKBaseModuleLibrary: 6de43aeeb519d1c5f3aa94ebaffe8b3a57351312
   MKBeaconXCustomUI: e75dc529c553c9424e647e30272a463e0a8e9a4e
-  MKBeaconXTag: 76d505a5257571b95ab390f7ae4382dc09d50d09
+  MKBeaconXTag: 3b36c0be86005489bba5d13e1b2ef64bde2994e7
   MKCustomUIModule: 83b76a0ccd1ac855157091b389154bd6a309c414
   MLInputDodger: 79a0e420a80d0d3bba122bf2639603cc76609ba8
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
@@ -1079,4 +1154,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 024a7c1c3127e8c465ed1acdb7bd33c6f0ac05dd
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0

@@ -205,6 +205,17 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)bxt_readPowerOffByHallSensorWithSucBlock:(void (^)(id returnData))sucBlock
                                      failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Scan response packet.
+/*
+ @{
+ @"isOn":@(YES)
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_readScanResponsePacketWithSucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock;
+
 /**
  Reading current frame types of the 6 SLOTs,
  eg:@"001020405080":
@@ -278,6 +289,29 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)bxt_readSensorStatusWithSucBlock:(void (^)(id returnData))sucBlock
                              failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Static heartbeat params.
+/*
+    @{
+ @"isOn":@(YES),
+ @"cycleTime":@"100",           //Static cycle time.Unit:Mins
+ @"advDuration":@"50",          //Adv duration.Unit:s
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_readStaticHeartbeatWithSucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Battery Mode.
+/*
+    @{
+    @"mode":@"0",       //@"0":Button Battery       @"1":Lithium battery
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_readBatteryModeWithSucBlock:(void (^)(id returnData))sucBlock
+                            failedBlock:(void (^)(NSError *error))failedBlock;
 
 #pragma mark - AA07 密码相关
 /// Whether the device has enabled password verification when connecting. When the device has disabled password verification, no password is required to connect to the device, otherwise a connection password is required.

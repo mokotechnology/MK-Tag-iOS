@@ -153,6 +153,14 @@
                  failedBlock:failedBlock];
 }
 
++ (void)bxt_readScanResponsePacketWithSucBlock:(void (^)(id returnData))sucBlock
+                                   failedBlock:(void (^)(NSError *error))failedBlock {
+    [self readDataWithTaskID:mk_bxt_taskReadScanResponsePacketOperation
+                     cmdFlag:@"2f"
+                    sucBlock:sucBlock
+                 failedBlock:failedBlock];
+}
+
 + (void)bxt_readSlotDataTypeWithSucBlock:(void (^)(id returnData))sucBlock
                              failedBlock:(void (^)(NSError *error))failedBlock {
     [self readDataWithTaskID:mk_bxt_taskReadSlotDataTypeOperation
@@ -197,6 +205,22 @@
                              failedBlock:(void (^)(NSError *error))failedBlock {
     [self readDataWithTaskID:mk_bxt_taskReadSensorStatusOperation
                      cmdFlag:@"4f"
+                    sucBlock:sucBlock
+                 failedBlock:failedBlock];
+}
+
++ (void)bxt_readStaticHeartbeatWithSucBlock:(void (^)(id returnData))sucBlock
+                                failedBlock:(void (^)(NSError *error))failedBlock {
+    [self readDataWithTaskID:mk_bxt_taskReadStaticHeartbeatOperation
+                     cmdFlag:@"5a"
+                    sucBlock:sucBlock
+                 failedBlock:failedBlock];
+}
+
++ (void)bxt_readBatteryModeWithSucBlock:(void (^)(id returnData))sucBlock
+                            failedBlock:(void (^)(NSError *error))failedBlock {
+    [self readDataWithTaskID:mk_bxt_taskReadBatteryModeOperation
+                     cmdFlag:@"5d"
                     sucBlock:sucBlock
                  failedBlock:failedBlock];
 }
