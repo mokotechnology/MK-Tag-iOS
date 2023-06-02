@@ -1083,7 +1083,7 @@
 		411BD1EEA912BE2BCB3B70E200739E7F /* Toast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Toast.debug.xcconfig; sourceTree = "<group>"; };
 		418446408FD8D6BAED328C85BC172F9E /* MKBaseTableView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKBaseTableView.m; path = MKBaseModuleLibrary/Classes/Base/View/tableView/MKBaseTableView.m; sourceTree = "<group>"; };
 		4187061EC4F1DF2D179EB80F87A12A88 /* Target_BXT_Module.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Target_BXT_Module.m; path = MKBeaconXTag/Classes/Target/Target_BXT_Module.m; sourceTree = "<group>"; };
-		4189C3794BA353BF081A00F5AEAFB076 /* MKBeaconXTag.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = MKBeaconXTag.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		4189C3794BA353BF081A00F5AEAFB076 /* MKBeaconXTag.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = MKBeaconXTag.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		41AD1DCCA7F0E6AA8C282D632678EE80 /* MBProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MBProgressHUD.modulemap; sourceTree = "<group>"; };
 		41C106E15DADEE0C271F94548125F166 /* bxt_settingTabBarItemUnselected@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bxt_settingTabBarItemUnselected@3x.png"; path = "MKBeaconXTag/Assets/bxt_settingTabBarItemUnselected@3x.png"; sourceTree = "<group>"; };
 		42904171BC5B8C2BA23E6B7D36142F46 /* MBProgressHUD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MBProgressHUD.release.xcconfig; sourceTree = "<group>"; };
@@ -1225,7 +1225,7 @@
 		722124C5FE9A08D3587036F6DA028037 /* MKDateFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKDateFormatter.m; path = MKBaseModuleLibrary/Classes/Tools/MKDateFormatter/MKDateFormatter.m; sourceTree = "<group>"; };
 		726F181457775D7F8E2EA752147B081B /* MBProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		72CAF7C2A94200C4BA7E3E31F98FA863 /* UIScrollView+MLInputDodger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+MLInputDodger.h"; path = "Classes/UIScrollView+MLInputDodger.h"; sourceTree = "<group>"; };
-		72F1231A510C0CB9EFC04DB399E778F2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		72F1231A510C0CB9EFC04DB399E778F2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		733144E93F34FE480D9AF6571C586DF7 /* UITableView+MKAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+MKAdd.m"; path = "MKBaseModuleLibrary/Classes/Category/UITableView+MKAdd.m"; sourceTree = "<group>"; };
 		7447EDDCA8A959AC838F7A2BE8F9652D /* mk_bx_searchGrayIcon@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "mk_bx_searchGrayIcon@3x.png"; path = "MKBeaconXCustomUI/Assets/mk_bx_searchGrayIcon@3x.png"; sourceTree = "<group>"; };
 		74AEB03B709E2789B35911EA36223834 /* MBProgressHUD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MBProgressHUD.debug.xcconfig; sourceTree = "<group>"; };
@@ -1291,7 +1291,7 @@
 		89A3F4583283D0AF5DBD5BA94FE51F11 /* bxt_switchUnselectedIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bxt_switchUnselectedIcon@2x.png"; path = "MKBeaconXTag/Assets/bxt_switchUnselectedIcon@2x.png"; sourceTree = "<group>"; };
 		89ACAC25206576B8DD4F9C86C78F0278 /* MKBXSlotConfigUIDCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKBXSlotConfigUIDCell.h; path = MKBeaconXCustomUI/Classes/SlotConfig/SlotConfigCell/UIDCell/MKBXSlotConfigUIDCell.h; sourceTree = "<group>"; };
 		89D3B76B8A43503B7236A70B10EFE401 /* bxt_threeAxisAcceLoadingIcon@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bxt_threeAxisAcceLoadingIcon@3x.png"; path = "MKBeaconXTag/Assets/bxt_threeAxisAcceLoadingIcon@3x.png"; sourceTree = "<group>"; };
-		89DB27A80DC3C1A9F63484D67C4EF186 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		89DB27A80DC3C1A9F63484D67C4EF186 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8A53D8A9109E1B9EF8674931E55957DC /* MKBXSlotFrameTypePickView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKBXSlotFrameTypePickView.h; path = MKBeaconXCustomUI/Classes/SlotConfig/FrameTypePickView/MKBXSlotFrameTypePickView.h; sourceTree = "<group>"; };
 		8B0361244CFBBA2E4D48536871C67A25 /* MKBeaconXCustomUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MKBeaconXCustomUI.release.xcconfig; sourceTree = "<group>"; };
 		8B40222E9780A2581354310830040978 /* MJRefreshBackGifFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackGifFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.m; sourceTree = "<group>"; };
@@ -1342,7 +1342,7 @@
 		9CA8E18D1801843FB769B6CD6BFFAA66 /* mk_customUI_clearButtonIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "mk_customUI_clearButtonIcon@2x.png"; path = "MKCustomUIModule/Assets/mk_customUI_clearButtonIcon@2x.png"; sourceTree = "<group>"; };
 		9CED36C96203EE8605218BC8C80FF25B /* MJRefreshGifHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshGifHeader.m; path = MJRefresh/Custom/Header/MJRefreshGifHeader.m; sourceTree = "<group>"; };
 		9D21424C2DC1474139556EA145358D79 /* HHInteractionFlipTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HHInteractionFlipTransition.m; path = HHTransition/HHInteractionFlipTransition.m; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E8DAEBBCAA04FD4D0715926A4B1060C /* MLInputDodger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MLInputDodger.release.xcconfig; sourceTree = "<group>"; };
 		9F5273B1CBE58CFE4F2CDBE530911B24 /* MKBXTRemoteReminderCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MKBXTRemoteReminderCell.m; path = MKBeaconXTag/Classes/Functions/RemoteReminderPage/View/MKBXTRemoteReminderCell.m; sourceTree = "<group>"; };
 		9F7D8B3A299E73E82093E172AAF945C7 /* UIButton+MKAdd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+MKAdd.m"; path = "MKBaseModuleLibrary/Classes/Category/UIButton+MKAdd.m"; sourceTree = "<group>"; };
@@ -2100,7 +2100,6 @@
 				096DF9FB98481A02321616D74D2F8914 /* Resources */,
 				1D651FD242959EE8B72EC34B2B14D36C /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -2189,7 +2188,6 @@
 				9A61F8844A50C6043901AFC83AE50A81 /* CircleProgressBar.m */,
 				947BA427891B349C26F0F6F6EC54D3A0 /* Support Files */,
 			);
-			name = CircleProgressBar;
 			path = CircleProgressBar;
 			sourceTree = "<group>";
 		};
@@ -2267,7 +2265,6 @@
 				45E9F47F822C2504B94E4666C616EDFE /* ViewController+MASAdditions.m */,
 				28858013F4C7F8B10118FCFB3BD56595 /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -2479,7 +2476,6 @@
 				384F3FADB6FE1FCEE2C6D6E5847E959F /* SlotConfig */,
 				7022969AA9011E2CA332B7888FB47DC9 /* Support Files */,
 			);
-			name = MKBeaconXCustomUI;
 			path = MKBeaconXCustomUI;
 			sourceTree = "<group>";
 		};
@@ -2840,7 +2836,6 @@
 				F97C333AB992D7FBEF2CFDF75CCCF2BD /* Support Files */,
 				9C1A8C7DA7E31035D8F6E11F83F328B9 /* Tools */,
 			);
-			name = MKBaseModuleLibrary;
 			path = MKBaseModuleLibrary;
 			sourceTree = "<group>";
 		};
@@ -3024,7 +3019,6 @@
 				1BBBB2F0EB1A1760DB2362C190CE54A9 /* UIViewController+HHTransitionProperty.m */,
 				E4EE82FEEA74C75294ABBDF82620A560 /* Support Files */,
 			);
-			name = HHTransition;
 			path = HHTransition;
 			sourceTree = "<group>";
 		};
@@ -3065,7 +3059,6 @@
 				3FE04EA1D14987FB4E25CC2D627CFEDC /* CTMediator+HandyTools.m */,
 				B5AAE5F319EC2A5DBC4DAC2683DF42B0 /* Support Files */,
 			);
-			name = CTMediator;
 			path = CTMediator;
 			sourceTree = "<group>";
 		};
@@ -3229,7 +3222,6 @@
 				4EC7681C8F947D16DE1F181CA4550107 /* UIAdopter */,
 				F2FDD3A7DE8AAC486E4F26C7E0EA22BE /* View */,
 			);
-			name = MKCustomUIModule;
 			path = MKCustomUIModule;
 			sourceTree = "<group>";
 		};
@@ -3421,7 +3413,6 @@
 				4B1E6F0D7F29D4DC02685ED9AC34A011 /* MKBLEBaseSDKDefines.h */,
 				06E1F48406D4EFD16086F4D1EDBCA305 /* Support Files */,
 			);
-			name = MKBaseBleModule;
 			path = MKBaseBleModule;
 			sourceTree = "<group>";
 		};
@@ -3540,7 +3531,6 @@
 				9AF27251EE6439470C9070CE06C05A86 /* Resources */,
 				2D2385C865A3A3DD99B9AF8CD667C76B /* Support Files */,
 			);
-			name = MLInputDodger;
 			path = MLInputDodger;
 			sourceTree = "<group>";
 		};
@@ -3587,7 +3577,6 @@
 				431CF59F1D4F5CBAB104757B3FB62D5E /* MBProgressHUD.m */,
 				097879CE7C4EE92A9129FFF31398840B /* Support Files */,
 			);
-			name = MBProgressHUD;
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -3609,7 +3598,6 @@
 				D061BCE07C91F002B9757DFB67C9C3CF /* UIView+Toast.m */,
 				BE0866007CFD4B6B6EAF4A4EF9146654 /* Support Files */,
 			);
-			name = Toast;
 			path = Toast;
 			sourceTree = "<group>";
 		};
@@ -3821,7 +3809,6 @@
 				0305988BEBB25AA9771B8E6C66FC214E /* WRNavigationBar.m */,
 				A1B6EBDF7CB0FC3F050517E3D34CAEFE /* Support Files */,
 			);
-			name = WRNavigationBar;
 			path = WRNavigationBar;
 			sourceTree = "<group>";
 		};
@@ -6111,8 +6098,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -6566,8 +6552,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

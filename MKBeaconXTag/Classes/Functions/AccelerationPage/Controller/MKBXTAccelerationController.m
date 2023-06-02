@@ -130,7 +130,7 @@ MKBXTAccelerationParamsCellDelegate>
         return self.section0List.count;
     }
     if (section == 1) {
-        return ([MKBXTConnectManager shared].supportHeartbeat ? self.section1List.count : 0);
+        return self.section1List.count;
     }
     return 0;
 }

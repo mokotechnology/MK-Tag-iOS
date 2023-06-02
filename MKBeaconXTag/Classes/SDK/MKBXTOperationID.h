@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, mk_bxt_taskOperationID) {
     mk_bxt_taskReadMotionTriggerCountOperation,    //读取移动触发次数
     mk_bxt_taskReadHallTriggerCountOperation,       //读取霍尔传感器触发次数
     mk_bxt_taskReadSensorStatusOperation,           //读取传感器类型
+    mk_bxt_taskReadThreeAxisSensorTypeOperation,    //读取三轴传感器型号
     mk_bxt_taskReadStaticHeartbeatOperation,        //读取心跳功能参数
     mk_bxt_taskReadBatteryModeOperation,            //读取电池类型
     

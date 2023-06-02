@@ -427,6 +427,7 @@ MKBXTSlotTriggerCellDelegate>
     cellModel.motionStopStaticInterval = self.dataModel.motionStopStaticInterval;
     cellModel.magneticStart = self.dataModel.magneticStart;
     cellModel.magneticInterval = self.dataModel.magneticInterval;
+    cellModel.enableTypeButton = !self.dataModel.hallStatus;
     
     [self.section2List addObject:cellModel];
 }

@@ -85,6 +85,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *magneticInterval;
 
+/// 霍尔开关机状态
+@property (nonatomic, assign)BOOL hallStatus;
+
 
 - (instancetype)initWithSlotIndex:(NSInteger)index;
 

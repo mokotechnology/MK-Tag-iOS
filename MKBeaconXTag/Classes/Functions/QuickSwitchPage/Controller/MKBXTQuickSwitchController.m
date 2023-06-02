@@ -248,13 +248,11 @@ MKBXQuickSwitchCellDelegate>
     cellModel3.isOn = self.dataModel.passwordVerification;
     [self.dataList addObject:cellModel3];
     
-    if ([MKBXTConnectManager shared].supportHeartbeat) {
-        MKBXQuickSwitchCellModel *cellModel4 = [[MKBXQuickSwitchCellModel alloc] init];
-        cellModel4.index = 3;
-        cellModel4.titleMsg = @"Scan response packet";
-        cellModel4.isOn = self.dataModel.scanResponse;
-        [self.dataList addObject:cellModel4];
-    }
+//    MKBXQuickSwitchCellModel *cellModel4 = [[MKBXQuickSwitchCellModel alloc] init];
+//    cellModel4.index = 3;
+//    cellModel4.titleMsg = @"Scan response packet";
+//    cellModel4.isOn = self.dataModel.scanResponse;
+//    [self.dataList addObject:cellModel4];
         
     [self.collectionView reloadData];
 }

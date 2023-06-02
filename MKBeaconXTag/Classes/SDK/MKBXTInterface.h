@@ -281,13 +281,25 @@ NS_ASSUME_NONNULL_BEGIN
 /// Read the type of sensor the device.
 /*
  @{
-    
+    @"threeAxisAccelerometer":@(YES),
+    @"htSensor":@(NO),
  }
  */
 /// @param sucBlock Success callback
 /// @param failedBlock Failure callback
 + (void)bxt_readSensorStatusWithSucBlock:(void (^)(id returnData))sucBlock
                              failedBlock:(void (^)(NSError *error))failedBlock;
+
+/// Read the three-axis sensor model.
+/*
+    @{
+    @"type":@"0",           //@"0":lis3dh,  @"1":STK8328-C
+ }
+ */
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)bxt_readThreeAxisSensorTypeWithSucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError * error))failedBlock;
 
 /// Static heartbeat params.
 /*

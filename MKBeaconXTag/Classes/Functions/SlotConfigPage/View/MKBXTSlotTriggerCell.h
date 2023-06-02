@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *magneticInterval;
 
+/// 可以按键（霍尔）关机 -- 禁用触发类型选择
+@property (nonatomic, assign)BOOL enableTypeButton;
+
 @end
 
 @protocol MKBXTSlotTriggerCellDelegate <NSObject>

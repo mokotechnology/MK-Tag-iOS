@@ -38,11 +38,9 @@
             [self operationFailedBlockWithMsg:@"Read Password verification Error" block:failedBlock];
             return;
         }
-        if ([MKBXTConnectManager shared].supportHeartbeat) {
-            if (![self readScanRespons]) {
-                [self operationFailedBlockWithMsg:@"Read Scan Respons Error" block:failedBlock];
-                return;
-            }
+        if (![self readScanRespons]) {
+            [self operationFailedBlockWithMsg:@"Read Scan Respons Error" block:failedBlock];
+            return;
         }
         
         moko_dispatch_main_safe(^{

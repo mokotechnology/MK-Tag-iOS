@@ -123,7 +123,7 @@
         return self.section2List.count;
     }
     if (section == 3) {
-        return ([MKBXTConnectManager shared].supportHeartbeat ? self.section3List.count : 0);
+        return self.section3List.count;
     }
     if (section == 4) {
         return (self.supportBatteryReset ? self.section4List.count : 0);
@@ -164,16 +164,6 @@
 
 #pragma mark - interface
 - (void)readDatas {
-    if (![MKBXTConnectManager shared].supportHeartbeat) {
-        //旧版本
-        [self loadSection0Datas];
-        [self loadSection2Datas];
-        [self loadSection3Datas];
-        [self loadSection4Datas];
-        
-        [self.tableView reloadData];
-        return;
-    }
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
     [MKBXTInterface bxt_readBatteryModeWithSucBlock:^(id  _Nonnull returnData) {
         [[MKHudManager share] hide];

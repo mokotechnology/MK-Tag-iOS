@@ -265,6 +265,13 @@
             @"threeAxisAccelerometer":@(threeAxisAccelerometer),
             @"htSensor":@(htSensor),
         };
+    }else if ([cmd isEqualToString:@"50"]) {
+        //读取三轴传感器型号
+        operationID = mk_bxt_taskReadThreeAxisSensorTypeOperation;
+        NSString *type = [MKBLEBaseSDKAdopter getDecimalStringWithHex:content range:NSMakeRange(0, content.length)];
+        resultDic = @{
+            @"type":type,
+        };
     }else if ([cmd isEqualToString:@"5a"]) {
         //读取心跳功能参数
         operationID = mk_bxt_taskReadStaticHeartbeatOperation;

@@ -17,6 +17,8 @@
 #import "MKPickerView.h"
 #import "MKCustomUIAdopter.h"
 
+#import "MKBXTConnectManager.h"
+
 #import "MKBXTSlotTriggerViewAdopter.h"
 
 @implementation MKBXTSlotTriggerCellModel
@@ -161,6 +163,7 @@ MKBXTSlotMagneticDetectionViewDelegate>
     if (!_dataModel || ![_dataModel isKindOfClass:MKBXTSlotTriggerCellModel.class]) {
         return;
     }
+    self.typeButton.enabled = _dataModel.enableTypeButton;
     self.switchButton.selected = _dataModel.isOn;
     UIImage *switchIcon = (_dataModel.isOn ? LOADICON(@"MKBeaconXTag", @"MKBXTSlotTriggerCell", @"bxt_switchSelectedIcon.png") : LOADICON(@"MKBeaconXTag", @"MKBXTSlotTriggerCell", @"bxt_switchUnselectedIcon.png"));
     [self.switchButton setImage:switchIcon forState:UIControlStateNormal];
@@ -350,7 +353,7 @@ MKBXTSlotMagneticDetectionViewDelegate>
 
 - (UIButton *)typeButton {
     if (!_typeButton) {
-        _typeButton = [MKCustomUIAdopter customButtonWithTitle:@"Magnetic detection"
+        _typeButton = [MKCustomUIAdopter customButtonWithTitle:@"Motion detection"
                                                         target:self
                                                         action:@selector(typeButtonPressed)];
         _typeButton.titleLabel.font = MKFont(12.f);

@@ -74,9 +74,9 @@
     if (section == 0) {
         return (self.supportAcc ? self.section0List.count : 0);
     }
-    if (section == 1) {
-        return self.section1List.count;
-    }
+//    if (section == 1) {
+//        return self.section1List.count;
+//    }
     return 0;
 }
 

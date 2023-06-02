@@ -209,6 +209,14 @@
                  failedBlock:failedBlock];
 }
 
++ (void)bxt_readThreeAxisSensorTypeWithSucBlock:(void (^)(id returnData))sucBlock
+                                    failedBlock:(void (^)(NSError * error))failedBlock {
+    [self readDataWithTaskID:mk_bxt_taskReadThreeAxisSensorTypeOperation
+                     cmdFlag:@"50"
+                    sucBlock:sucBlock
+                 failedBlock:failedBlock];
+}
+
 + (void)bxt_readStaticHeartbeatWithSucBlock:(void (^)(id returnData))sucBlock
                                 failedBlock:(void (^)(NSError *error))failedBlock {
     [self readDataWithTaskID:mk_bxt_taskReadStaticHeartbeatOperation

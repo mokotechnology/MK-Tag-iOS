@@ -22,10 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设备类型
 @property (nonatomic, copy)NSString *deviceType;
 
-@property (nonatomic, copy)NSString *firmwareVersion;
+/// 是否支持三轴
+@property (nonatomic, assign)BOOL supportThreeAcc;
 
-/// 固件版本号大于1.0.4支持
-@property (nonatomic, assign)BOOL supportHeartbeat;
+/// 三轴传感器类型 
+@property (nonatomic, assign)NSInteger threeAccType;
 
 + (MKBXTConnectManager *)shared;
 

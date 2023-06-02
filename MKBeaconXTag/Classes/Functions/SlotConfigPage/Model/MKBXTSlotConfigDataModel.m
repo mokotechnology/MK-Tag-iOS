@@ -54,6 +54,10 @@
             [self operationFailedBlockWithMsg:@"Read Slot Trigger Error" block:failedBlock];
             return;
         }
+        if (![self readHallSensorState]) {
+            [self operationFailedBlockWithMsg:@"Read Hall Failed" block:failedBlock];
+            return;
+        }
         moko_dispatch_main_safe(^{
             if (sucBlock) {
                 sucBlock();
@@ -305,6 +309,19 @@
     __block BOOL success = NO;
     [MKBXTInterface bxt_configSlotTriggerMagneticDetectionWithIndex:self.index start:self.magneticStart advInterval:[self.magneticInterval integerValue] sucBlock:^{
         success = YES;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)readHallSensorState {
+    __block BOOL success = NO;
+    [MKBXTInterface bxt_readPowerOffByHallSensorWithSucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        self.hallStatus = [returnData[@"result"][@"isOn"] boolValue];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);
