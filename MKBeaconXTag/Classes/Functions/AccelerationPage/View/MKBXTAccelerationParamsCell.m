@@ -185,22 +185,22 @@
 - (void)updateThresholdUnit {
     if (self.scale == 0) {
         //2g
-        self.thresholdUnitLabel.text = @"x3.91mg";
+        self.thresholdUnitLabel.text = (self.dataModel.threeAccType == 0 ? @"x16mg" : @"x3.91mg");
         return;
     }
     if (self.scale == 1) {
         //4g
-        self.thresholdUnitLabel.text = @"x7.81mg";
+        self.thresholdUnitLabel.text = (self.dataModel.threeAccType == 0 ? @"x32mg" : @"x7.81mg");
         return;
     }
     if (self.scale == 2) {
         //8g
-        self.thresholdUnitLabel.text = @"x15.63mg";
+        self.thresholdUnitLabel.text = (self.dataModel.threeAccType == 0 ? @"x62mg" : @"x15.63mg");
         return;
     }
     if (self.scale == 3) {
         //16g
-        self.thresholdUnitLabel.text = @"x31.25mg";
+        self.thresholdUnitLabel.text = (self.dataModel.threeAccType == 0 ? @"x186mg" : @"x31.25mg");
         return;
     }
 }

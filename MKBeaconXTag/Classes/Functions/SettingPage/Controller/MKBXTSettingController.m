@@ -29,6 +29,8 @@
 #import "MKBXTUpdateController.h"
 #import "MKBXTRemoteReminderController.h"
 
+#import "MKBXTSettingModel.h"
+
 @interface MKBXTSettingController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
@@ -49,7 +51,7 @@
 
 @property (nonatomic, copy)NSString *confirmAsciiStr;
 
-@property (nonatomic, assign)BOOL supportBatteryReset;
+@property (nonatomic, strong)MKBXTSettingModel *dataModel;
 
 @end
 
@@ -64,14 +66,12 @@
     if (self.dfuModule) {
         return;
     }
-    [self loadSection1Datas];
-    [self.tableView reloadData];
+    [self readDatas];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadSubViews];
-    [self readDatas];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deviceStartDFUProcess)
                                                  name:@"mk_bxt_startDfuProcessNotification"
@@ -126,7 +126,7 @@
         return self.section3List.count;
     }
     if (section == 4) {
-        return (self.supportBatteryReset ? self.section4List.count : 0);
+        return self.section4List.count;
     }
     return 0;
 }
@@ -165,16 +165,19 @@
 #pragma mark - interface
 - (void)readDatas {
     [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
-    [MKBXTInterface bxt_readBatteryModeWithSucBlock:^(id  _Nonnull returnData) {
+    @weakify(self);
+    [self.dataModel readDataWithSucBlock:^{
+        @strongify(self);
         [[MKHudManager share] hide];
-        self.supportBatteryReset = ([returnData[@"result"][@"mode"] integerValue] == 1);
         [self loadSection0Datas];
+        [self loadSection1Datas];
         [self loadSection2Datas];
         [self loadSection3Datas];
         [self loadSection4Datas];
         
         [self.tableView reloadData];
     } failedBlock:^(NSError * _Nonnull error) {
+        @strongify(self);
         [[MKHudManager share] hide];
         [self.view showCentralToast:error.userInfo[@"errorInfo"]];
     }];
@@ -182,8 +185,8 @@
 
 #pragma mark - section0
 - (void)loadSection0Datas {
-    if (![[MKBXTConnectManager shared].deviceType isEqualToString:@"00"]) {
-        //00为不带传感器
+    [self.section0List removeAllObjects];
+    if (self.dataModel.supportThreeAcc || !self.dataModel.hallStatus) {
         MKNormalTextCellModel *cellModel1 = [[MKNormalTextCellModel alloc] init];
         cellModel1.showRightIcon = YES;
         cellModel1.leftMsg = @"Sensor configurations";
@@ -207,6 +210,8 @@
 #pragma mark - 传感器设置
 - (void)pushSensorConfigPage {
     MKBXTSensorConfigController *vc = [[MKBXTSensorConfigController alloc] init];
+    vc.hallStatus = self.dataModel.hallStatus;
+    vc.supportThreeAcc = self.dataModel.supportThreeAcc;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -360,6 +365,7 @@
 
 #pragma mark - section2
 - (void)loadSection2Datas {
+    [self.section2List removeAllObjects];
     MKNormalTextCellModel *dfuModel = [[MKNormalTextCellModel alloc] init];
     dfuModel.leftMsg = @"DFU";
     dfuModel.showRightIcon = YES;
@@ -374,6 +380,7 @@
 
 #pragma mark - section3
 - (void)loadSection3Datas {
+    [self.section3List removeAllObjects];
     MKNormalTextCellModel *dfuModel = [[MKNormalTextCellModel alloc] init];
     dfuModel.leftMsg = @"Remote reminder";
     dfuModel.showRightIcon = YES;
@@ -388,11 +395,14 @@
 
 #pragma mark - section4
 - (void)loadSection4Datas {
-    MKNormalTextCellModel *dfuModel = [[MKNormalTextCellModel alloc] init];
-    dfuModel.leftMsg = @"Reset Battery";
-    dfuModel.showRightIcon = YES;
-    dfuModel.methodName = @"resetBattery";
-    [self.section4List addObject:dfuModel];
+    [self.section4List removeAllObjects];
+    if (self.dataModel.supportBatteryReset) {
+        MKNormalTextCellModel *dfuModel = [[MKNormalTextCellModel alloc] init];
+        dfuModel.leftMsg = @"Reset Battery";
+        dfuModel.showRightIcon = YES;
+        dfuModel.methodName = @"resetBattery";
+        [self.section4List addObject:dfuModel];
+    }
 }
 
 - (void)resetBattery{
@@ -481,6 +491,13 @@
         _section4List = [NSMutableArray array];
     }
     return _section4List;
+}
+
+- (MKBXTSettingModel *)dataModel {
+    if (!_dataModel) {
+        _dataModel = [[MKBXTSettingModel alloc] init];
+    }
+    return _dataModel;
 }
 
 @end

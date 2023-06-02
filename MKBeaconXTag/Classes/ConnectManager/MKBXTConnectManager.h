@@ -19,15 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否需要密码连接
 @property (nonatomic, assign)BOOL needPassword;
 
-/// 设备类型
-@property (nonatomic, copy)NSString *deviceType;
-
-/// 是否支持三轴
-@property (nonatomic, assign)BOOL supportThreeAcc;
-
-/// 三轴传感器类型 
-@property (nonatomic, assign)NSInteger threeAccType;
-
 + (MKBXTConnectManager *)shared;
 
 /// 连接设备

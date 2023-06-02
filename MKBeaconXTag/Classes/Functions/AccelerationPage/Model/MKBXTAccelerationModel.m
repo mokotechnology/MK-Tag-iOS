@@ -25,6 +25,10 @@
 
 - (void)readWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock {
     dispatch_async(self.readQueue, ^{
+        if (![self readThreeAccType]) {
+            [self operationFailedBlockWithMsg:@"Read Three Acc Type Error" block:failedBlock];
+            return;
+        }
         if (![self readTriggerParams]) {
             [self operationFailedBlockWithMsg:@"Read Params Error" block:failedBlock];
             return;
@@ -89,6 +93,19 @@
     __block BOOL success = NO;
     [MKBXTInterface bxt_configThreeAxisDataParams:self.samplingRate acceleration:self.scale motionThreshold:[self.threshold integerValue] sucBlock:^ {
         success = YES;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)readThreeAccType {
+    __block BOOL success = NO;
+    [MKBXTInterface bxt_readThreeAxisSensorTypeWithSucBlock:^(id  _Nonnull returnData) {
+        success = YES;
+        self.threeAccType = [returnData[@"result"][@"type"] integerValue];
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {
         dispatch_semaphore_signal(self.semaphore);

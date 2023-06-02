@@ -29,8 +29,6 @@
 
 @property (nonatomic, strong)NSMutableArray *section1List;
 
-@property (nonatomic, assign)BOOL supportAcc;
-
 @end
 
 @implementation MKBXTSensorConfigController
@@ -42,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadSubViews];
-    [self readDataFromDevice];
+    [self loadSectionDatas];
 }
 
 #pragma mark - UITableViewDelegate
@@ -72,11 +70,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return (self.supportAcc ? self.section0List.count : 0);
+        return (self.supportThreeAcc ? self.section0List.count : 0);
     }
-//    if (section == 1) {
-//        return self.section1List.count;
-//    }
+    if (section == 1) {
+        return (self.hallStatus ? 0 : self.section1List.count);
+    }
     return 0;
 }
 
@@ -89,19 +87,6 @@
     MKNormalTextCell *cell = [MKNormalTextCell initCellWithTableView:tableView];
     cell.dataModel = self.section1List[indexPath.row];
     return cell;
-}
-
-#pragma mark - interface
-- (void)readDataFromDevice {
-    [[MKHudManager share] showHUDWithTitle:@"Reading..." inView:self.view isPenetration:NO];
-    [MKBXTInterface bxt_readSensorStatusWithSucBlock:^(id  _Nonnull returnData) {
-        [[MKHudManager share] hide];
-        self.supportAcc = [returnData[@"result"][@"threeAxisAccelerometer"] boolValue];
-        [self loadSectionDatas];
-    } failedBlock:^(NSError * _Nonnull error) {
-        [[MKHudManager share] hide];
-        [self.view showCentralToast:error.userInfo[@"errorInfo"]];
-    }];
 }
 
 #pragma mark - loadSectionDatas

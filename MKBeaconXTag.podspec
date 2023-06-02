@@ -191,12 +191,17 @@ TODO: Add long description of the pod here.
     ss.subspec 'SettingPage' do |sss|
       sss.subspec 'Controller' do |ssss|
         ssss.source_files = 'MKBeaconXTag/Classes/Functions/SettingPage/Controller/**'
+        
+        ssss.dependency 'MKBeaconXTag/Functions/SettingPage/Model'
               
         ssss.dependency 'MKBeaconXTag/Functions/SensorConfigPage/Controller'
         ssss.dependency 'MKBeaconXTag/Functions/QuickSwitchPage/Controller'
         ssss.dependency 'MKBeaconXTag/Functions/UpdatePage/Controller'
         ssss.dependency 'MKBeaconXTag/Functions/RemoteReminderPage/Controller'
         
+      end
+      sss.subspec 'Model' do |ssss|
+        ssss.source_files = 'MKBeaconXTag/Classes/Functions/SettingPage/Model/**'
       end
     end
     

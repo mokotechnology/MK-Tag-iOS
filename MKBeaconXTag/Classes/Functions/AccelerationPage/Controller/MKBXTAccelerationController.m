@@ -229,6 +229,7 @@ MKBXTAccelerationParamsCellDelegate>
 
 - (void)loadSection0Datas {
     MKBXTAccelerationParamsCellModel *cellModel = [[MKBXTAccelerationParamsCellModel alloc] init];
+    cellModel.threeAccType = self.dataModel.threeAccType;
     cellModel.scale = self.dataModel.scale;
     cellModel.samplingRate = self.dataModel.samplingRate;
     cellModel.threshold = self.dataModel.threshold;

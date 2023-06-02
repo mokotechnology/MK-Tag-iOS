@@ -293,6 +293,9 @@
               "name": "Controller",
               "source_files": "MKBeaconXTag/Classes/Functions/SettingPage/Controller/**",
               "dependencies": {
+                "MKBeaconXTag/Functions/SettingPage/Model": [
+
+                ],
                 "MKBeaconXTag/Functions/SensorConfigPage/Controller": [
 
                 ],
@@ -306,6 +309,10 @@
 
                 ]
               }
+            },
+            {
+              "name": "Model",
+              "source_files": "MKBeaconXTag/Classes/Functions/SettingPage/Model/**"
             }
           ]
         },

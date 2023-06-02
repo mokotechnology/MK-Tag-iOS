@@ -36,6 +36,7 @@
 #import "MKBXTScanTagInfoCell.h"
 #import "MKBXTSensorConfigController.h"
 #import "MKBXTSettingController.h"
+#import "MKBXTSettingModel.h"
 #import "MKBXTSlotTriggerViewAdopter.h"
 #import "MKBXTSlotConfigController.h"
 #import "MKBXTSlotConfigDefines.h"

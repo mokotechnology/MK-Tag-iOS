@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKBXTSensorConfigController : MKBaseViewController
 
+/// 霍尔开关机状态
+@property (nonatomic, assign)BOOL hallStatus;
+
+/// 是否支持三轴
+@property (nonatomic, assign)BOOL supportThreeAcc;
+
 @end
 
 NS_ASSUME_NONNULL_END

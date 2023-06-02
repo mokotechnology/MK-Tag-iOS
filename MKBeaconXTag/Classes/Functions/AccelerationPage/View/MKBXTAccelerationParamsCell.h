@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MKBXTAccelerationParamsCellModel : NSObject
 
+/*
+ LIS3DH / LIS2DH  --   0x00
+ STK8328  --   0x01
+ */
+@property (nonatomic, assign)NSInteger threeAccType;
+
 /// 0:1hz,1:10hz,2:25hz,3:50hz,4:100hz
 @property (nonatomic, assign)NSInteger samplingRate;
 

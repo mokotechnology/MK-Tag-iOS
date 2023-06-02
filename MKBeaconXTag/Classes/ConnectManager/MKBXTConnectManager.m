@@ -57,16 +57,6 @@
             [self operationFailedMsg:dic[@"msg"] completeBlock:failedBlock];
             return ;
         }
-        if (![self readSensorType]) {
-            [self operationFailedMsg:@"Read Sensor Type Failed" completeBlock:failedBlock];
-            return;
-        }
-        if (self.supportThreeAcc) {
-            if (![self readThreeAccType]) {
-                [self operationFailedMsg:@"Read Three Acc Type Failed" completeBlock:failedBlock];
-                return;
-            }
-        }
         moko_dispatch_main_safe(^{
             if (sucBlock) {
                 sucBlock();
@@ -110,32 +100,6 @@
     }];
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     return connectResult;
-}
-
-- (BOOL)readSensorType {
-    __block BOOL success = NO;
-    [MKBXTInterface bxt_readSensorStatusWithSucBlock:^(id  _Nonnull returnData) {
-        success = YES;
-        self.supportThreeAcc = [returnData[@"result"][@"threeAxisAccelerometer"] boolValue];
-        dispatch_semaphore_signal(self.semaphore);
-    } failedBlock:^(NSError * _Nonnull error) {
-        dispatch_semaphore_signal(self.semaphore);
-    }];
-    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
-    return success;
-}
-
-- (BOOL)readThreeAccType {
-    __block BOOL success = NO;
-    [MKBXTInterface bxt_readThreeAxisSensorTypeWithSucBlock:^(id  _Nonnull returnData) {
-        success = YES;
-        self.threeAccType = [returnData[@"result"][@"type"] integerValue];
-        dispatch_semaphore_signal(self.semaphore);
-    } failedBlock:^(NSError * _Nonnull error) {
-        dispatch_semaphore_signal(self.semaphore);
-    }];
-    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
-    return success;
 }
 
 - (BOOL)configDate {
