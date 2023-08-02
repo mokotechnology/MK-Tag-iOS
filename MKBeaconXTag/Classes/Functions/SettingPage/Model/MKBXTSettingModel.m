@@ -24,10 +24,10 @@
 
 - (void)readDataWithSucBlock:(void (^)(void))sucBlock failedBlock:(void (^)(NSError *error))failedBlock {
     dispatch_async(self.readQueue, ^{
-        if (![self readBatteryMode]) {
-            [self operationFailedBlockWithMsg:@"Read Battery Mode Error" block:failedBlock];
-            return;
-        }
+//        if (![self readBatteryMode]) {
+//            [self operationFailedBlockWithMsg:@"Read Battery Mode Error" block:failedBlock];
+//            return;
+//        }
         if (![self readHallSensorState]) {
             [self operationFailedBlockWithMsg:@"Read Hall Error" block:failedBlock];
             return;
@@ -36,7 +36,7 @@
             [self operationFailedBlockWithMsg:@"Read Sensor Type Error" block:failedBlock];
             return;
         }
-        
+        [self readBatteryMode];
         moko_dispatch_main_safe(^{
             if (sucBlock) {
                 sucBlock();

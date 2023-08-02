@@ -179,7 +179,6 @@ static dispatch_once_t onceToken;
         return;
     }
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"AA08"]]) {
-        //引起设备断开连接的类型
         NSString *content = [MKBLEBaseSDKAdopter hexStringFromData:characteristic.value];
         BOOL moved = ([[content substringWithRange:NSMakeRange(8, 2)] isEqualToString:@"01"]);
         [[NSNotificationCenter defaultCenter] postNotificationName:mk_bxt_receiveHallSensorStatusChangedNotification
