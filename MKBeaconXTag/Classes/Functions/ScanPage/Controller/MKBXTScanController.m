@@ -484,7 +484,7 @@ MKBXTScanDeviceInfoCellDelegate>
     [topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(defaultTopInset);
+        make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
         make.height.mas_equalTo(searchButtonHeight + 2 * 15.f);
     }];
     [self.refreshButton addSubview:self.refreshIcon];
@@ -514,7 +514,7 @@ MKBXTScanDeviceInfoCellDelegate>
         make.left.mas_equalTo(10.f);
         make.right.mas_equalTo(-10.f);
         make.top.mas_equalTo(topView.mas_bottom);
-        make.bottom.mas_equalTo(-VirtualHomeHeight - 5.f);
+        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom).mas_offset(-5.f);
     }];
 }
 
