@@ -10,4 +10,18 @@
 
 @implementation CTMediator (MKBXTAdd)
 
+- (UIViewController *)CTMediator_Beacon_Tag_AboutPage {
+    UIViewController *viewController = [self performTarget:@"BXPButton_Module"
+                                                    action:@"BXPButton_Tag_AboutController"
+                                                    params:@{}
+                                         shouldCacheTarget:NO];
+    if ([viewController isKindOfClass:[UIViewController class]]) {
+        return viewController;
+    }
+    return [self performTarget:@"BXT_Module"
+                        action:@"Beacon_Tag_Module_AboutController"
+                        params:@{}
+             shouldCacheTarget:NO];
+}
+
 @end

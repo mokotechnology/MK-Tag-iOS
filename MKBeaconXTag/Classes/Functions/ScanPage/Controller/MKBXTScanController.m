@@ -31,6 +31,8 @@
 
 #import "MKBLEBaseCentralManager.h"
 
+#import "CTMediator+MKBXTAdd.h"
+
 #import "MKBXTSDK.h"
 
 #import "MKBXTConnectManager.h"
@@ -102,7 +104,7 @@ MKBXTScanDeviceInfoCellDelegate>
 
 #pragma mark - super method
 - (void)rightButtonMethod {
-    MKBXTAboutController *vc = [[MKBXTAboutController alloc] init];
+    UIViewController *vc = [[CTMediator sharedInstance] CTMediator_Beacon_Tag_AboutPage];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

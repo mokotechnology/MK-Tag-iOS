@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CTMediator (MKBXTAdd)
 
+/// 关于页面
+- (UIViewController *)CTMediator_Beacon_Tag_AboutPage;
+
 @end
 
 NS_ASSUME_NONNULL_END
